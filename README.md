@@ -100,14 +100,27 @@ Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und L
 
 Schachteln und Schleifen erinnern ja eigentlich an Geburtstagsgeschenke. Und ein bisschen wie ein Geschenk ist auch diese Konstruktion...
 
-Um alle Register asuzuwerten, müssen wir sie nacheinander in das Testregister 0 befördern. Dazu dient die folgende Schleifenanordnung:
+Um alle Register auszuwerten, müssen wir sie nacheinander in das Testregister 0 befördern. Dazu dient die folgende Schleifenanordnung:
 
-- Innere Schleife: Nach jedem Durchlauf sind alle vier Bits des Testregisters 0 ausgewertet, Register 2 wird über Ringtausch in das Testregister 0 geschoben und die anderen Register entsprechend.
-- LR-Schleife: Nach jedem vierten Durchlauf werden die linken Register (0, 2, 4, 6) mit den rechten Registern (1, 3, 5, 7) vertauscht. 
-- OU-Schleife: Nach jedem achten Durchlauf werden die oberen Register 8-F mit den unteren Registern 0-7 vertauscht.
+- Innere Schleife: Nach jedem Durchlauf sind alle vier Bits des Registers 0 ausgewertet, Register 2 wird über Ringtausch in das Register 0 geschoben und die anderen Register entsprechend.
+- LR-Schleife: Nach jedem vierten Durchlauf tauschen die linken Register (0, 2, 4, 6) mit den rechten Registern (1, 3, 5, 7). 
+- OU-Schleife: Nach jedem achten Durchlauf tauschen die oberen Register 8-F mit den unteren Registern 0-7.
 - Äußere Schleife: Nach jedem 16. Durchlauf werden die Register auf der LED-Matrix dargestellt.
 
 Ohne groß nachzudenken, würde man dafür in einer Hochsprache einfach drei FOR-Schleifen mit drei unterschiedlichen Index-Variablen ineinander legen (= verschachteln). Register sind beim Microtronic aber kostbar und in diesem Fall schon fast alle belegt. Ich musste mit nur einem Index-Register _SCHLEIFE_ auskommen.
+
+Das geht aber verhältnismäßig einfach und elegant, wenn man das Bitmuster der Schleifenregisters auswertet. Denn bei jedem vierten Durchlauf (und nur dann) sind die Bits 1 und 2 des Schleifenregisters gesetzt, bei jedem achten Durchlauf die Bits 1, 2 und 3 und bei jedem 16. Durchlauf alle 4 Bits. Mit _ANDI_ blenden wir die anderen Bits aus und können dann entscheiden, ob die Schleife in die nächsthöhere Ebene verlassen werden soll. Exemplarisch:
+
+```
+              MOV SCHLEIFE,TEMP   	
+              ANDI #3,TEMP             Nur Bits 1 und 2 berücksichtigen
+              CMPI #3,TEMP             Fertig mit innerer Schleife? 
+              BRZ RLRotate             ja, dann Schleife verlassen (bei 3, 7, B und F)
+              GOTO Loop
+RLRotate      ...	
+```
+
+
 
 
 
