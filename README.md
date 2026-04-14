@@ -14,7 +14,7 @@ Game of Life ist ja eigentlich kein Spiel. Du bestimmst die Anfangskonfiguration
 
 Im ESP2090-Studio muss der Button **LED Start** gedrückt sein, sonst siehst du nix.
 
-Dann startest du das Programm wie üblich mit HALT-NEXT-00-RUN und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine schon vorhandene Figur zum Start laden willst.
+Dann startest du das Programm wie üblich mit HALT-NEXT-00-RUN und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
 
 - Taste 0 - die Werte wurden bereits über HALT-REG-x in die Register 0-E eingegeben (Register F ist immer 0)
 - Taste 1 - Blinker
