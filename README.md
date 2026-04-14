@@ -102,10 +102,10 @@ Schachteln und Schleifen erinnern ja eigentlich an Geburtstagsgeschenke. Und ein
 
 Um alle Register auszuwerten, müssen wir sie nacheinander in das Testregister 0 befördern. Dazu dient die folgende Schleifenanordnung:
 
-- Innere Schleife: Nach jedem Durchlauf sind alle vier Bits des Registers 0 ausgewertet, Register 2 wird über Ringtausch in das Register 0 geschoben und die anderen Register entsprechend.
-- LR-Schleife: Nach jedem vierten Durchlauf tauschen die linken Register (0, 2, 4, 6) mit den rechten Registern (1, 3, 5, 7). 
-- OU-Schleife: Nach jedem achten Durchlauf tauschen die oberen Register 8-F mit den unteren Registern 0-7.
-- Äußere Schleife: Nach jedem 16. Durchlauf werden die Register auf der LED-Matrix dargestellt.
+- Innere Schleife: Nach jedem Durchlauf sind alle vier Bits des Registers 0 ausgewertet, Register 2 wird über **Ringtausch** in das Register 0 geschoben und die anderen Register entsprechend.
+- LR-Schleife: Nach jedem vierten Durchlauf tauschen die **linken Register** (0, 2, 4, 6) mit den **rechten Registern** (1, 3, 5, 7). 
+- OU-Schleife: Nach jedem achten Durchlauf tauschen die **oberen Register** 8-F mit den **unteren Registern** 0-7.
+- Äußere Schleife: Nach jedem 16. Durchlauf werden die Register auf der **LED-Matrix dargestellt**.
 
 Ohne groß nachzudenken, würde man dafür in einer Hochsprache einfach drei FOR-Schleifen mit drei unterschiedlichen Index-Variablen ineinander legen (= verschachteln). Register sind beim Microtronic aber kostbar und in diesem Fall schon fast alle belegt. Ich musste mit nur einem Index-Register _SCHLEIFE_ auskommen.
 
