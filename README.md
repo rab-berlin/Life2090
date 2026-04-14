@@ -152,7 +152,7 @@ Normalerweise schieben wir das Register, dessen Bits wir zählen wollen, in das 
 Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenzende Register (der linke Nachbar von Bit 1) größer als 7 ist. Denn dann ist das vierte Bit gesetzt, also existiert der Nachbar und wird direkt mit _ADC_ zur Summe addiert. 
 
 ```
-           CMPI #7,UNTEN-R	Bit 4 gesetzt?
+           CMPI #7,UNTEN-R       Bit 4 gesetzt?
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
