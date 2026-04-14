@@ -48,14 +48,14 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 
 | Register | Register |
 |:---:|:---:|
-| E<br>1 2 3 4 | F |
-| C | D |
-| A | B |
-| 8 | 9 |
-| 6 | 7 |
-| 4 | 5 |
-| :green_circle: 2 | 3 |
-| 0 | 1 |
+| E<br>.... | F<br>.... |
+| C<br>.... | D<br>.... |
+| A<br>.... | B<br>.... |
+| 8<br>.... | 9<br>.... |
+| 6<br>.... | 7<br>.... |
+| 4<br>.... | 5<br>.... |
+| 2<br>.... | 3<br>.... |
+| 0<br>.... | 1<br>.... |
 
 
 Für Register 6 aber Vergleiche mit den Registern 4, 5, 6, 7, 8 und 9. Ganz andere Register, ganz anderer Code.
