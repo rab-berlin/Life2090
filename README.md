@@ -48,7 +48,7 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
-| E<br>* * * * | F<br>.... |
+| E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | C<br>.... | D<br>.... |
 | A<br>.... | B<br>.... |
 | 8<br>.... | 9<br>.... |
