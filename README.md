@@ -44,7 +44,7 @@ Wie üblich - der erste Gedanke war: Müsste doch vielleicht irgendwie gehen... 
 
 Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64 Zellen, das passt ja eigentlich genau in eine Registerbank (Arbeits- oder Speicherregister). Die anderen Register könnte ich dann doch zur Berechnung der Folgegeneration verwenden. 
 
-Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend zu setzen, hätte wahrscheinlich eine knappe Million Instruktionen erfordert. Denn wir können Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 2, 3, 4 und 5 durchgeführt werden. 
+Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend zu setzen, hätte wahrscheinlich eine knappe Million Instruktionen erfordert. Denn wir können Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4 und 5 durchgeführt werden. 
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
@@ -54,54 +54,10 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 | 8<br>:white_circle: :white_circle: :white_circle: :white_circle: | 9<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 4<br>:red_circle: :red_circle: :red_circle: :red_circle: | 5<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| 2<br>:black_circle: :black_circle: :black_circle: :black_circle: | 3<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 2<br>:green_circle: :green_circle: :green_circle: :green_circle: | 3<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 | 0<br>:red_circle: :red_circle: :red_circle: :red_circle: | 1<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 
-
-<table>
-  <tr>
-    <th>Register</th>
-    <th>Register</th>
-  </tr>
-  <tr>
-    <td>E<br>* * * *</td>
-    <td>F<br>* * * *</td>
-  </tr>
-  <tr>
-    <td>C<br>* * * *</td>
-    <td>D<br>* * * *</td>
-  </tr>
-  <tr>
-    <td>A<br>* * * *</td>
-    <td>B<br>* * * *</td>
-  </tr>
-  <tr>
-    <td>8<br>* * * *</td>
-    <td>9<br>* * * *</td>
-  </tr>
-  <tr>
-    <td>6<br>* * * *</td>
-    <td>7<br>* * * *</td>
-  </tr>
-  <tr>
-    <td>4<br>* * * *</td>
-    <td>5<br>* * * *</td>
-  </tr>
-  <tr>
-    <td>3<br>* * * *</td>
-    <td><span style="color:green">Positiv</span></td>
-  </tr>
-  <tr>
-    <td>1<br>* * * *</td>
-    <td>0<br>* * * *</td>
-  </tr>
-</table>
-
-<table>
-  <td><span style="color:red">test</span></td>
-</table>
-
-Für Register 6 aber Vergleiche mit den Registern 4, 5, 6, 7, 8 und 9. Ganz andere Register, ganz anderer Code.
+Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9. Ganz andere Register, ganz anderer Code.
 
 
 
