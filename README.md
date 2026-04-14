@@ -10,7 +10,19 @@ Wenn du sowas nicht hast, dann empfehle ich, das erst einmal zusammenzubauen. We
 
 ## Bedienung
 
-...
+Game of Life ist ja eigentlich kein Spiel. Du bestimmst die Anfangskonfiguration und danach schaust du mehr oder weniger interessiert zu, was daraus entsteht. Insofern ist die Interaktion mit den Programm sehr trivial.
+
+Zu Beginn wählst du aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine schon vorhandene Figur zum Start laden willst.
+
+Taste 0 - die Werte wurden vorher schon über HALT-REG-x in die Register 0-E eingegeben (Register F ist immer 0)
+Taste 1 - Blinker
+Taste 2 - Uhr
+Taste 3 - Kröte
+Taste 4 - Bipole
+Taste 5 - Gleiter
+Taste 6 - Segler
+Taste 7 - Pentomino
+Taste F - die Werte werden anschließend eingegeben, jedes Register von 0 bis F einzeln
 
 ## Hintergrund
 
