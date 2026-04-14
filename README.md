@@ -54,7 +54,7 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 | 8 | 9 |
 | 6 | 7 |
 | 4 | 5 |
-| 2 | 3 |
+| :green_circle: 2 | 3 |
 | 0 | 1 |
 
 
