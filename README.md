@@ -8,7 +8,21 @@ Gleich vorweg: Du solltest irgendetwas haben, das die Ereignisse an den Ausgäng
 
 Wenn du sowas nicht hast, dann empfehle ich, das erst einmal zusammenzubauen. Wenn du aber sagst: "Es reicht mir, algorithmische Schönheit in Gedanken zu bestaunen", dann auch gut. Aber zusammenlöten, anfassen und austesten macht mehr Spaß. Isso. Schreib mir, vielleicht hab ich noch ne Platine und Teile bei mir rumliegen.
 
-## 
+## Bedienung
+
+...
+
+## Hintergrund
+
+## Entwicklung
+
+Wie üblich - der erste Gedanke war: Müsste doch vielleicht irgendwie gehen... Der zweite Gedanke: Nee, kann nicht klappen, zu viele Programmschritte, zu wenig Register.
+
+Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64 Zellen, das passt ja eigentlich genau in eine Registerbank (Arbeits- oder Speicherregister). Die anderen Register könnte ich dann doch zur Berechnung der Folgegeneration verwenden. 
+
+Wir können aber Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. 
+
+
 
 
 
