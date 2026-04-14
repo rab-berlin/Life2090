@@ -97,6 +97,10 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
   </tr>
 </table>
 
+<table>
+  <td><span style="color:red">test</span></td>
+</table>
+
 Für Register 6 aber Vergleiche mit den Registern 4, 5, 6, 7, 8 und 9. Ganz andere Register, ganz anderer Code.
 
 
