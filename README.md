@@ -72,7 +72,7 @@ Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9:
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
-Ganz andere Register, ziemlich anderer Code. Leider können wir Register nicht indirekt adressieren (also elegant einen Register-Pointer auf das auszuwertende Register mitlaufen lassen) - dafür gibt es im Befehlssatz schlicht keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Also 16 mal _irgendwie das gleiche_, aber mit jeweils wechselnden Registern machen. Das hätte wahrscheinlich eine knappe Million Instruktionen erfordert.
+Ganz andere Register, ziemlich anderer Code. Leider **können wir Register nicht indirekt adressieren** (also elegant einen Register-Pointer auf das auszuwertende Register mitlaufen lassen) - dafür gibt es im Befehlssatz schlicht keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Also 16 mal _irgendwie das gleiche_, aber mit jeweils wechselnden Registern machen. Das hätte wahrscheinlich eine knappe Million Instruktionen erfordert.
 
 ### Zweiter Ansatz
 
