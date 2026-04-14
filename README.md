@@ -56,12 +56,12 @@ Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und L
 
 ### Bitweise Rotation
 
-Bitweise Rotation funktioniert besser mit SHL, weil das herausgeschobene Bit direkt als Carry wieder addiert werden kann:
+Bitweise Rotation funktioniert besser mit SHL (Verdoppeln), weil das herausgeschobene Bit direkt als Carry wieder addiert werden kann:
 ```
 Rotate     SHL ERGREG
            ADC ERGREG
 ```
-Mit SHR würde das erste Bit herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
+Mit SHR (Halbieren) würde das erste Bit herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
 ```
 Rotate     SHR ERGREG
            BRC Add8
