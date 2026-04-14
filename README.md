@@ -54,9 +54,48 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 | 8<br>.... | 9<br>.... |
 | 6<br>.... | 7<br>.... |
 | 4<br>.... | 5<br>.... |
-| 2<br>.... | 3<br>.... |
+| 2<br> | 3<br>.... |
 | 0<br>.... | 1<br>.... |
 
+
+<table>
+  <tr>
+    <th>Register</th>
+    <th>Register</th>
+  </tr>
+  <tr>
+    <td>E<br>* * * *</td>
+    <td>F<br>* * * *</td>
+  </tr>
+  <tr>
+    <td>C<br>* * * *</td>
+    <td>D<br>* * * *</td>
+  </tr>
+  <tr>
+    <td>A<br>* * * *</td>
+    <td>B<br>* * * *</td>
+  </tr>
+  <tr>
+    <td>8<br>* * * *</td>
+    <td>9<br>* * * *</td>
+  </tr>
+  <tr>
+    <td>6<br>* * * *</td>
+    <td>7<br>* * * *</td>
+  </tr>
+  <tr>
+    <td>4<br>* * * *</td>
+    <td>5<br>* * * *</td>
+  </tr>
+  <tr>
+    <td>3<br>* * * *</td>
+    <td style="background-color: #ffcccc;">2<br>* * * *</td>
+  </tr>
+  <tr>
+    <td>1<br>* * * *</td>
+    <td>0<br>* * * *</td>
+  </tr>
+</table>
 
 Für Register 6 aber Vergleiche mit den Registern 4, 5, 6, 7, 8 und 9. Ganz andere Register, ganz anderer Code.
 
