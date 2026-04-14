@@ -8,6 +8,10 @@ Gleich vorweg: Du solltest irgendetwas haben, das die Ereignisse an den Ausgäng
 
 Wenn du sowas nicht hast, dann empfehle ich, das erst einmal zusammenzubauen. Wenn du aber sagst: "Es reicht mir, algorithmische Schönheit in Gedanken zu bestaunen", dann auch gut. Aber zusammenlöten, anfassen und austesten macht mehr Spaß. Isso. Schreib mir, vielleicht hab ich noch ne Platine und Teile bei mir rumliegen.
 
+Zum Nachlesen hier das [Programm Life2090](https://github.com/rab-berlin/Life2090/blob/main/program/Life.pdf)
+
+Und hier die [MIC-Datei], die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
+
 ## Bedienung
 
 Game of Life ist ja eigentlich kein Spiel. Du bestimmst die Anfangskonfiguration und danach schaust du mehr oder weniger interessiert zu, was daraus entsteht. Insofern ist die Interaktion mit den Programm sehr trivial.
