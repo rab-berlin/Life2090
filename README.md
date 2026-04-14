@@ -128,12 +128,12 @@ RLRotate   ...
 
 ### Bitweise Rotation
 
-Bitweise Rotation funktioniert besser mit SHL (Verdoppeln), weil das herausgeschobene Bit direkt als Carry wieder addiert werden kann:
+Bitweise Rotation funktioniert besser mit _SHL_ (Verdoppeln), weil das herausgeschobene Bit direkt als Carry wieder addiert werden kann:
 ```
 Rotate     SHL ERGREG
            ADC ERGREG
 ```
-Mit SHR (Halbieren) würde das erste Bit herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
+Mit _SHR_ (Halbieren) würde das erste Bit herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
 ```
 Rotate     SHR ERGREG
            BRC Add8
@@ -142,5 +142,18 @@ Add8       ADDI #8,ERGREG
 Ende       ...
 ```
 Daher beginnt die innere Schleife mit dem Most Significant Bit (MSB), also mit Bit 4. Das kehrt zwar die intuitive Reihenfolge um, spart aber zwei Befehle.
+
+### Abkürzung
+
+Den ADC-Befehl können wir auch zur Auswertung bei Bit 1 vorteilhaft nutzen.
+
+Normalerweise schieben wir das Register, dessen Bits wir zählen wollen, in das Register TEST, löschen mit _ANDI_ die Bits, die nicht in die Summe einfließen sollen und zählen dann die Bits über _SHL_ und _ADC_.
+
+Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenzende Register (der linke Nachbar von Bit 1) größer als 7 ist. Denn dann ist das vierte Bit gesetzt, also existiert der Nachbar und wird direkt mit _ADC_ zur Summe addiert. 
+
+```
+           CMPI #7,UNTEN-R	Bit 4 gesetzt?
+           ADC ANZAHL            Dann +1 in Anzahl Nachbarn
+```
 
 
