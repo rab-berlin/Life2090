@@ -98,13 +98,18 @@ Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und L
 
 ### Verschachtelte Schleife(n)
 
-Schachteln und Schleifen erinnern ja eigentlich an Geburtstagsgeschenke. Und ein bisschen wie ein Geschenk ist auch diese Kontruktion...
+Schachteln und Schleifen erinnern ja eigentlich an Geburtstagsgeschenke. Und ein bisschen wie ein Geschenk ist auch diese Konstruktion...
 
-Ohne groß nachzudenken, würde man in einer Hochsprache wohl einfach drei FOR-Schleifen mit drei unterschiedlichen Index-Variablen ineinander legen (= verschachteln). Register sind beim Microtronic aber kostbar und in diesem Fall schon fast alle belegt. Also muss ich mit nur einem Index-Register _SCHLEIFE_ auskommen.
+Um alle Register asuzuwerten, müssen wir sie nacheinander in das Testregister 0 befördern. Dazu dient die folgende Schleifenanordnung:
 
 - Innere Schleife: Nach jedem Durchlauf sind alle vier Bits des Testregisters 0 ausgewertet, Register 2 wird über Ringtausch in das Testregister 0 geschoben und die anderen Register entsprechend.
 - LR-Schleife: Nach jedem vierten Durchlauf werden die linken Register (0, 2, 4, 6) mit den rechten Registern (1, 3, 5, 7) vertauscht. 
 - OU-Schleife: Nach jedem achten Durchlauf werden die oberen Register 8-F mit den unteren Registern 0-7 vertauscht.
+- Äußere Schleife: Nach jedem 16. Durchlauf werden die Register auf der LED-Matrix dargestellt.
+
+Ohne groß nachzudenken, würde man dafür in einer Hochsprache einfach drei FOR-Schleifen mit drei unterschiedlichen Index-Variablen ineinander legen (= verschachteln). Register sind beim Microtronic aber kostbar und in diesem Fall schon fast alle belegt. Ich musste mit nur einem Index-Register _SCHLEIFE_ auskommen.
+
+
 
 ### Bitweise Rotation
 
