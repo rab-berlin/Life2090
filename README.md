@@ -89,9 +89,9 @@ Das Programm ist ziemlich rechenintensiv. Die Operationen selbst sind nicht komp
 
 Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa **220 Instruktionen** abgearbeitet werden. Da der Microtronic mehr als doppelt so schnell rechnet, wenn das Display ausgeschaltet bleibt, ist DISOUT praktisch ein Muss. Dann braucht ein Befehl immer noch 9 ms, also sind 220 Befehle in 2 Sekunden durchlaufen. 
 
-Alle 16 Register werden somit - theoretisch - innerhalb von 32 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **40 Sekunden** für Berechnung und Anzeige einer kompletten **Folgegeneration** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
+Alle 16 Register werden somit - theoretisch - innerhalb von 32 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **36 Sekunden** für Berechnung und Anzeige einer kompletten **Folgegeneration** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
 
-Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht das Programm aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann 36 Sekunden für die Berechnung einer Generation, also 10% Geschwindigkeitssteigerung. Nicht berauschend. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
+Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht das Programm aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann 32 Sekunden für die Berechnung einer Generation, also 10% Geschwindigkeitssteigerung. Nicht berauschend. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
 
 
 ## Programmtricks
