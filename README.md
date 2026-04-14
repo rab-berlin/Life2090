@@ -36,9 +36,7 @@ Game of Life kennst du, oder? Nein? Dann bist du kein Nerd der 80er-Jahre. Oder 
 
 Nur Spaß. Bleib natürlich, wenn du magst. Aber lies erstmal in Ruhe, was es mit Life auf sich hat. Es ist ein sehr interessantes Stück Computer-Geschichte. 
 
-In den 80er-Jahren lief dieses Programm praktisch auf jedem Heimcomputer in irgendeiner Variante mindestens einmal. Wir erfreuten uns daran, wie der Computer aus der bestehenden die neue Generation ausrechnete und darstellte. Bewunderten vielleicht manchmal die Geschwindigkeit, in der sich das emsige Treiben auf dem Bildschirm abspielte. Und mancher - wir wollen keine Namen nennen - versuchte womöglich, die philosopischen Aspekte dieser Simulation zu ergründen... Woher kommen wir? Wohin gehen wir? Hat alles ein Ende? ...
-
-Ok. Ich hab´s wieder im Griff. :-)
+In den 80er-Jahren lief dieses Programm praktisch auf jedem Heimcomputer in irgendeiner Variante mindestens einmal. Wir erfreuten uns daran, wie der Computer aus der bestehenden die neue Generation ausrechnete und darstellte. Bewunderten vielleicht manchmal die Geschwindigkeit, in der sich das emsige Treiben auf dem Bildschirm abspielte. Und mancher - wir wollen keine Namen nennen - versuchte womöglich, die philosopischen Aspekte dieser Simulation zu ergründen... Woher kommen wir? Wohin gehen wir? Hat alles ein Ende? ... Ok, genug. Ich hab´s wieder im Griff. :-)
 
 Mein erster Computer, der Busch Microtronic 2090, konnte das nicht. Denn er hatte ja keinen Bildschirm... Bis jetzt!
 
