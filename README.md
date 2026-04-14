@@ -49,13 +49,13 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
 | E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| C<br>.... | D<br>.... |
-| A<br>.... | B<br>.... |
-| 8<br>.... | 9<br>.... |
-| 6<br>.... | 7<br>.... |
-| 4<br>.... | 5<br>.... |
-| 2<br> | 3<br>.... |
-| 0<br>.... | 1<br>.... |
+| C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 8<br>:white_circle: :white_circle: :white_circle: :white_circle: | 9<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 4<br>:red_circle: :red_circle: :red_circle: :red_circle: | 5<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 2<br>:black_circle: :black_circle: :black_circle: :black_circle: | 3<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 0<br>:red_circle: :red_circle: :red_circle: :red_circle: | 1<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 
 
 <table>
