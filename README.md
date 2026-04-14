@@ -89,7 +89,7 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
   </tr>
   <tr>
     <td>3<br>* * * *</td>
-    <td style="background-color: #ffcccc;">test</td>
+    <td><span style="color:green">Positiv</span></td>
   </tr>
   <tr>
     <td>1<br>* * * *</td>
