@@ -40,7 +40,7 @@ In den 80er-Jahren lief dieses Programm praktisch auf jedem Heimcomputer in irge
 
 Ok. Ich hab´s wieder im Griff. :-)
 
-Mein erster Computer, der Busch Microtronic 2090, konnte das nicht. Denn er hatte ja keinen Bildschirm. Bis jetzt!
+Mein erster Computer, der Busch Microtronic 2090, konnte das nicht. Denn er hatte ja keinen Bildschirm... Bis jetzt!
 
 ## Entwicklung
 
