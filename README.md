@@ -34,9 +34,9 @@ Mit SHR würde das erste Bit herausfliegen, dieses müsste als Wert 8 wieder zum
 ```
 Rotate     SHR ERGREG
            BRC Add8
-           GOTO EndeAusw
+           GOTO Ende
 Add8       ADDI #8,ERGREG
-EndeAusw   ...
+Ende       ...
 ```
 Daher beginnt die innere Schleife mit dem Most Significant Bit (MSB), also mit Bit 4. Das kehrt zwar die intuitive Reihenfolge um, spart aber zwei Befehle.
 
