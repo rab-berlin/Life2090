@@ -44,7 +44,9 @@ Wie üblich - der erste Gedanke war: Müsste doch vielleicht irgendwie gehen... 
 
 Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64 Zellen, das passt ja eigentlich genau in eine Registerbank (Arbeits- oder Speicherregister). Die anderen Register könnte ich dann doch zur Berechnung der Folgegeneration verwenden. 
 
-Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend zu setzen, hätte wahrscheinlich eine knappe Million Instruktionen erfordert. Denn wir können Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4 und 5 durchgeführt werden. 
+Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend zu setzen, hätte wahrscheinlich eine knappe Million Instruktionen erfordert. Denn wir können Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. 
+
+Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4 und 5 durchgeführt werden. 
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
@@ -57,9 +59,20 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 | 2<br>:green_circle: :green_circle: :green_circle: :green_circle: | 3<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 | 0<br>:red_circle: :red_circle: :red_circle: :red_circle: | 1<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 
-Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9. Ganz andere Register, ganz anderer Code.
+Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9. 
 
+| Register<br>Bits | Register<br>Bits |
+|:---:|:---:|
+| E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 8<br>:red_circle: :red_circle: :red_circle: :red_circle: | 9<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 6<br>:green_circle: :green_circle: :green_circle: :green_circle: | 7<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 4<br>:red_circle: :red_circle: :red_circle: :red_circle: | 5<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
+Ganz andere Register, ganz anderer Code.
 
 
 
