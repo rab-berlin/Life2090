@@ -47,7 +47,7 @@ Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64
 Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend zu setzen, hätte wahrscheinlich eine knappe Million Instruktionen erfordert. Denn wir können Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 2, 3, 4 und 5 durchgeführt werden. 
 
 | Register | Register |
-|---|---|
+|:---:|:---:|
 | E | F |
 | C | D |
 | A | B |
