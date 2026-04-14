@@ -91,7 +91,7 @@ Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa 
 
 Alle 16 Register werden somit - theoretisch - innerhalb von 25,5 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **32 Sekunden** für Berechnung und Anzeige einer kompletten **Folgegeneration** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
 
-Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht das Programm aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann xx Sekunden für die Berechnung einer Generation, also 10% Geschwindigkeitssteigerung. Nicht berauschend. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
+Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht das Programm aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann 28 Sekunden für die Berechnung einer Generation, also 12,5% Geschwindigkeitssteigerung. Ordentlich, aber nicht berauschend. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
 
 
 ## Programmtricks
