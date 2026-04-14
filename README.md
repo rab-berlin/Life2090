@@ -3,7 +3,11 @@ Conway´s Game of Life auf dem Busch Microtronic 2090
 
 ### [Game of Life](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens)
 
-...
+Gleich vorweg: Du solltest irgendetwas haben, das die Ereignisse an den Ausgängen des Microtronic 2090 sinnvoll interpretiert und darstellt. Und außerdem den _Takt_ vorgibt, denn die Übermittlung der einzelnen Bit-Sequenzen ist zeitkritisch. Diese zusätzliche Peripherie ist das ESP2090-Studio - was du dazu wissen musst, findest du auf der entprechenden Github-Seite.
+
+Wenn du sowas nicht hast, dann empfehle ich, das erst einmal zusammenzubauen. Wenn du aber sagst: "Es reicht mir, algorithmische Schönheit in Gedanken zu bestaunen", dann auch gut. Aber zusammenlöten, anfassen und austesten macht mehr Spaß. Isso. Schreib mir, vielleicht hab ich noch ne Platine und Teile bei mir rumliegen.
+
+
 
 Ein paar Hinweise...
 
