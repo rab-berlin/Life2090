@@ -48,7 +48,7 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 
 | Register | Register |
 |:---:|:---:|
-| E<br>.... | F<br>.... |
+| E<br>* * * * | F<br>.... |
 | C<br>.... | D<br>.... |
 | A<br>.... | B<br>.... |
 | 8<br>.... | 9<br>.... |
