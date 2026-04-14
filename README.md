@@ -44,9 +44,9 @@ Wie üblich - der erste Gedanke war: Müsste doch vielleicht irgendwie gehen... 
 
 Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64 Zellen, das passt ja eigentlich genau in eine Registerbank (Arbeits- oder Speicherregister). Die anderen Register könnte ich dann doch zur Berechnung der Folgegeneration verwenden. 
 
-Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend zu setzen, hätte wahrscheinlich eine knappe Million Instruktionen erfordert. Denn wir können Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. 
+### Erster Ansatz
 
-Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4 und 5 durchgeführt werden. 
+Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend setzen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4 und 5 durchgeführt werden:
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
@@ -59,7 +59,7 @@ Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4
 | 2<br>:green_circle: :green_circle: :green_circle: :green_circle: | 3<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 | 0<br>:red_circle: :red_circle: :red_circle: :red_circle: | 1<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 
-Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9. 
+Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9:
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
@@ -72,7 +72,14 @@ Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9.
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
-Ganz andere Register, ganz anderer Code.
+Ganz andere Register, ziemlich anderer Code. Leider können wir Register nicht indirekt adressieren (also elegant einen Register-Pointer auf das auszuwertende Register mitlaufen lassen) - dafür gibt es im Befehlssatz schlicht keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Also 16 mal _irgendwie das gleiche_, aber mit jeweils wechselnden Registern machen. Das hätte wahrscheinlich eine knappe Million Instruktionen erfordert.
+
+### Zweiter Ansatz
+
+
+
+
+### Dritter Ansatz
 
 
 
