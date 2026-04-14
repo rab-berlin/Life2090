@@ -10,7 +10,7 @@ Wenn du sowas nicht hast, dann empfehle ich, das erst einmal zusammenzubauen. We
 
 Zum Nachlesen hier das [Programm Life2090](https://github.com/rab-berlin/Life2090/blob/main/program/Life.pdf)
 
-Und hier die [MIC-Datei], die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
+Und hier die [MIC-Datei](https://github.com/rab-berlin/Life2090/blob/main/program/life.mic), die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
 
 ## Bedienung
 
