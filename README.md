@@ -44,7 +44,21 @@ Wie üblich - der erste Gedanke war: Müsste doch vielleicht irgendwie gehen... 
 
 Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64 Zellen, das passt ja eigentlich genau in eine Registerbank (Arbeits- oder Speicherregister). Die anderen Register könnte ich dann doch zur Berechnung der Folgegeneration verwenden. 
 
-Wir können aber Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. 
+Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend zu setzen, hätte wahrscheinlich eine knappe Million Instruktionen erfordert. Denn wir können Register nicht indirekt adressieren, dafür gibt es im Befehlssatz keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 2, 3, 4 und 5 durchgeführt werden. 
+
+| | |
+|---|---|
+| E | F |
+| C | D |
+| A | B |
+| 8 | 9 |
+| 6 | 7 |
+| 4 | 5 |
+| 2 | 3 |
+| 0 | 1 |
+
+
+Für Register 6 aber Vergleiche mit den Registern 4, 5, 6, 7, 8 und 9. Ganz andere Register, ganz anderer Code.
 
 
 
