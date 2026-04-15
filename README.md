@@ -158,12 +158,12 @@ RLRotate   ...
 
 ### Bitweise Rotation
 
-Bitweise Rotation funktioniert besser mit _SHL_ (Verdoppeln), weil das herausgeschobene Bit direkt als Carry wieder addiert werden kann:
+Bitweise Rotation funktioniert besser mit _SHL_ (Verdoppeln), weil das höchstwertige Bit (MSB) herausgeschoben wird und direkt als Carry wieder addiert werden kann:
 ```
 Rotate     SHL ERGREG
            ADC ERGREG
 ```
-Mit _SHR_ (Halbieren) würde das erste Bit herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
+Mit _SHR_ (Halbieren) würde das niedrigstwertige Bit (LSB) herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
 ```
 Rotate     SHR ERGREG
            BRC Add8
@@ -175,14 +175,22 @@ Daher beginnt die innere Schleife mit dem Most Significant Bit (MSB), also mit B
 
 ### Abkürzung
 
-Den ADC-Befehl können wir auch zur Auswertung bei Bit 1 vorteilhaft nutzen.
+Den ADC-Befehl können wir auch zur Auswertung der links bei Bit 1 und rechts bei Bit 4 angrenzenden Register vorteilhaft nutzen.
 
-Normalerweise schieben wir das Register, dessen Bits wir zählen wollen, in das Register TEST, löschen mit _ANDI_ die Bits, die nicht in die Summe einfließen sollen und zählen dann die Bits über _SHL_ und _ADC_.
+Normalerweise wird das Register, dessen Bits wir zählen wollen, in TEST geschoben. Dann werden dort die Bits, die nicht in die Summe einfließen sollen, mit ANDI gelöscht und zum Schluss mit SHL, SHR und ADC gezählt (Unterprogramme _CountX_).
 
-Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenzende Register (der linke Nachbar von Bit 1) größer als 7 ist. Denn dann ist das vierte Bit gesetzt, also existiert der Nachbar und wird direkt mit _ADC_ zur Summe addiert. 
+Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenzende Register (der linke Nachbar von Bit 1) größer als 7 ist. Denn dann ist das vierte Bit gesetzt, also lebt der Nachbar und wird direkt mit ADC zur Summe addiert. 
 
 ```
-           CMPI #7,UNTEN-R       Bit 4 gesetzt?
+           CMPI #7,UNTEN-R       Bit 4 in linkem Nachbarrregister gesetzt?
+           ADC ANZAHL            Dann +1 in Anzahl Nachbarn
+```
+
+Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfach die Existenz des rechten Nachbars prüfen. Daher kopieren wir das Register in TEST, schieben einmal nach rechts mit SHR und addieren das Carry, wenn es vorhanden ist, mit ADC.
+
+```
+           MOV UNTEN-R,TEST      Kopie in Register TEST erstellen
+           SHR TEST              Bit 1 in rechtem Nachbarrregister herausschieben, Carry?
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
