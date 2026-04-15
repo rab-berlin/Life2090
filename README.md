@@ -98,7 +98,11 @@ Zwar gab es in diesem Ansatz nur noch einen einzigen, immer gleichen Code-Teil f
 
 ### Dritter Ansatz
 
-Die Idee, nur eine einzige Auswertungsroutine zu haben, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte die Idee sehr _teuer_. 
+Die Idee, nur einen einzigen Code-Teil für die Auswertung zu haben, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte den Ansatz sehr _teuer_. 
+
+Wie wäre es denn, wenn wir nur ein einziges und immer das gleiche Register in der unteren Hälfte des Arbeitsspeichers betrachten und durch einen _clever durchdachten Verschiebebahnhof_ dafür sorgen, dass alle fünfzehn anderen Register nacheinander in diesem speziellen Register landen, um dort mit der immer gleichen Routine ausgewertet zu werden? Die Frage ist natürlich rhetorisch... es zeigte sich, dass das die Lösung war. 
+
+Dieses spezielle Register sollte Register 0 sein:
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
