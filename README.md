@@ -46,7 +46,7 @@ Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64
 
 ### Erster Ansatz
 
-Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils angrenzenden Registern vergleichen und die Bits dann entsprechend setzen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4 und 5 durchgeführt werden:
+Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolgt: Jedes einzelne Register mit den jeweils fünf angrenzenden Registern vergleichen und die Bits dann entsprechend setzen. Um etwa Register 2 auszuwerten, müssten Vergleiche mit den Registern 0, 1, 3, 4 und 5 durchgeführt werden:
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
@@ -72,14 +72,47 @@ Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9:
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
-Ganz andere Register, ziemlich anderer Code. Leider **können wir Register nicht indirekt adressieren** (also elegant einen Register-Pointer auf das auszuwertende Register mitlaufen lassen) - dafür gibt es im Befehlssatz schlicht keine Instruktionen. Das bedeutet, jedes Register müsste seinen eigenen Code-Teil im Programm bekommen. Also 16 mal _irgendwie das gleiche_, aber mit jeweils wechselnden Registern machen. Das hätte wahrscheinlich eine knappe Million Instruktionen erfordert.
+Andere Register bedingen aber anderen Code. Denn leider **können wir Register nicht indirekt adressieren** (also elegant Register-Pointer auf die jeweils relevanten Register mitlaufen lassen) - dafür gibt es im Befehlssatz schlicht keine Instruktionen. Das bedeutet, jedes Register bekommt seinen eigenen Code-Teil im Programm. Also 16 mal _irgendwie das gleiche_, aber mit jeweils wechselnden Registern machen. Das hätte wahrscheinlich eine knappe Million Instruktionen erfordert.
 
 ### Zweiter Ansatz
+
+| Register<br>Bits | Register<br>Bits |
+|:---:|:---:|
+| E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 8<br>:red_circle: :red_circle: :red_circle: :red_circle: | 9<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 6<br>:green_circle: :green_circle: :green_circle: :green_circle: | 7<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 4<br>:red_circle: :red_circle: :red_circle: :red_circle: | 5<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+
+Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
+
+Dadurch wurde zwar der Code für die Auswertung vereinheitlicht, aber die zahlreichen MOV-Operationen machten das Programm keineswegs kürzer, eher im Gegenteil. Ich hatte aber mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Dieser Ansatz passte also auch nicht in die verfügbaren 256 Programmschritte.
+
+
+
 
 
 
 
 ### Dritter Ansatz
+
+Die Idee, die Auswertungsroutine zu standardisieren, fühlte sich intuitiv richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch daran, dass die 
+
+| Register<br>Bits | Register<br>Bits |
+|:---:|:---:|
+| E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 8<br>:red_circle: :red_circle: :red_circle: :red_circle: | 9<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 6<br>:green_circle: :green_circle: :green_circle: :green_circle: | 7<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 4<br>:red_circle: :red_circle: :red_circle: :red_circle: | 5<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+
+
 
 
 
