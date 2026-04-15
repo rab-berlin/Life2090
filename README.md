@@ -8,9 +8,7 @@ Gleich vorweg: Du solltest irgendetwas haben, das die Ereignisse an den Ausgäng
 
 Wenn du sowas nicht hast, dann empfehle ich, das erst einmal zusammenzubauen. Wenn du aber sagst: "Es reicht mir, algorithmische Schönheit in Gedanken zu bestaunen", dann auch gut. Aber zusammenlöten, anfassen und austesten macht mehr Spaß. Isso. Schreib mir, vielleicht hab ich noch ne Platine und Teile bei mir rumliegen.
 
-Zum Nachlesen hier das [Programm Life2090](https://github.com/rab-berlin/Life2090/blob/main/program/Life.pdf)
-
-Und hier die [MIC-Datei](https://github.com/rab-berlin/Life2090/blob/main/program/life.mic), die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
+Zum Nachlesen hier das [Programm Life2090](https://github.com/rab-berlin/Life2090/blob/main/program/Life.pdf). Und hier die [MIC-Datei](https://github.com/rab-berlin/Life2090/blob/main/program/life.mic), die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
 
 ## Bedienung
 
@@ -32,11 +30,11 @@ Aus vorherigen Programmläufen können noch Werte in den Registern liegen, desha
 
 ## Hintergrund
 
-Game of Life kennst du, oder? Nein? Dann bist du kein Nerd der 80er-Jahre. Oder gar kein Nerd. Aber was machst du dann auf dieser Seite? Geh weg... Nur Spaß. Bleib natürlich, wenn du magst. Aber lies erstmal in Ruhe, was es mit Life auf sich hat. Es ist ein sehr interessantes Stück Computer-Geschichte. 
+Game of Life kennst du, oder? Nein? Dann bist du kein Nerd der 80er-Jahre. Oder gar kein Nerd. Aber was machst du dann auf dieser Seite? Geh weg... Nur Spaß. Bleib natürlich, wenn du magst. Aber lies erstmal in Ruhe, [was es mit Life auf sich hat](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens). Es ist ein sehr interessantes Stück Computer-Geschichte. 
 
-In den 80er-Jahren lief dieses Programm praktisch auf jedem Heimcomputer in irgendeiner Variante mindestens einmal. Wir erfreuten uns daran, wie der Computer aus der bestehenden die neue Generation ausrechnete und darstellte. Bewunderten vielleicht manchmal die Geschwindigkeit, in der sich das emsige Treiben auf dem Bildschirm abspielte. Und mancher - wir wollen keine Namen nennen - versuchte womöglich, die philosopischen Aspekte dieser Simulation zu ergründen... Woher kommen wir? Wohin gehen wir? Hat alles ein Ende? ... Ok, genug. Ich hab´s wieder im Griff. :-)
+In den 80er-Jahren lief dieses Programm auf jedem Heimcomputer mindestens einmal in irgendeiner Variante. Wir erfreuten uns daran, wie der Computer immer neue Generationen ausrechnete und darstellte. Bewunderten vielleicht manchmal die Geschwindigkeit, in der sich das emsige Treiben auf dem Bildschirm abspielte. Und mancher - wir wollen keine Namen nennen - versuchte womöglich, die philosopischen Aspekte dieser Simulation zu ergründen... Woher kommen wir? Wohin gehen wir? Hat alles ein Ende? ... Ok, genug... Ich hab´s wieder im Griff :-)
 
-Mein erster Computer, der Busch Microtronic 2090, konnte das nicht. Denn er hatte ja keinen Bildschirm... Bis jetzt!
+Mein erster Computer, der Busch Microtronic 2090, konnte das leider nicht. Denn er hatte ja keinen Bildschirm... Bis jetzt!
 
 ## Entwicklung
 
