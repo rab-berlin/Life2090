@@ -101,7 +101,7 @@ Zwar gab es in diesem Ansatz nur noch einen einzigen Code-Teil für die Auswertu
 
 ### Dritter Ansatz
 
-Die Idee, die Auswertungsroutine zu standardisieren, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch daran, dass für jedes Register zu viele Verschiebe-Operationen durchgeführt werden mussten, insbesondere die fünf Nachbarregister waren sehr "teuer". 
+Die Idee, die Auswertungsroutine zu standardisieren, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch darin, dass für jedes Register zu viele - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere die fünf Nachbarregister waren sehr _teuer_. 
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
