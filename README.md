@@ -82,9 +82,9 @@ Wenn z.B. das Register 4 ausgewertet werden soll:
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
-| TEST (r4)<br>:green_circle: :green_circle: :green_circle: :green_circle: | OBEN (r6)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| UNTEN (r2)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN (r5)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| NEBEN-O (r7)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN-U (r3)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| TEST (r4)<br>:green_circle: :green_circle: :green_circle: :green_circle: | NEBEN (r5)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| UNTEN (r2)<br>:red_circle: :red_circle: :red_circle: :red_circle: | OBEN (r6)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| NEBEN-U (r3)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN-O (r7)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 | 8<br>:white_circle: :white_circle: :white_circle: :white_circle: | 9<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 4<br>:green_circle: :green_circle: :green_circle: :green_circle: | 5<br>:white_circle: :white_circle: :white_circle: :white_circle: |
