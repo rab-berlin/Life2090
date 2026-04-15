@@ -105,6 +105,32 @@ Die Idee, die Auswertungsroutine zu standardisieren, fühlte sich intuitiv aber 
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
+| UNTEN-L (r4)<br>:red_circle: :red_circle: :red_circle: :red_circle: | UNTEN-R (r5)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| OBEN-L<br>:white_circle: :white_circle: :white_circle: :white_circle: | OBEN-R<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 4<br>:green_circle: :green_circle: :green_circle: :green_circle: | 5<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 2<br>:red_circle: :red_circle: :red_circle: :red_circle: | 3<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| 0<br>:green_circle: :green_circle: :green_circle: :green_circle: | 1<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| Register<br>Bits | Register<br>Bits |
+|:---:|:---:|
 | E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
