@@ -16,18 +16,15 @@ Zum Nachlesen hier das - wie immer liebevoll dokumentierte - [Programm Life2090]
 
 _Life_ ist ja eigentlich kein echtes Spiel. Du bestimmst die Anfangskonfiguration und schaust danach mehr oder weniger interessiert zu, welche immer neuen Figuren und Muster daraus entstehen. Insofern ist die Interaktion mit den Programm sehr trivial.
 
-Im ESP2090-Studio muss der Button **LED Start** gedrückt sein, sonst siehst du nix.
-
-Aus vorherigen Programmläufen können noch Werte in den Registern liegen, deshalb solltest du vor Programmstart einmal die grüne RESET-Taste drücken. Dann startest du das Programm mit HALT-NEXT-00-RUN und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
+Aus vorherigen Programmläufen können noch Werte in den Registern liegen, deshalb solltest du vor Programmstart einmal die **grüne RESET-Taste** drücken. Auf der **Weboberfläche des ESP2090-Studios** muss der Button **LED Start** gedrückt sein, sonst siehst du nix. Dann startest du das Programm mit **HALT-NEXT-00-RUN** und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
 
 - Taste 0 - die Werte wurden bereits über HALT-REG-x in die Register 0-E eingegeben (Register F ist immer 0)
-- Taste 1 - Blinker
-- Taste 2 - Uhr
-- Taste 3 - Kröte
-- Taste 4 - Bipole
-- Taste 5 - Gleiter
-- Taste 6 - Segler
-- Taste 7 - Pentomino
+- Taste 1 - Uhr
+- Taste 2 - Kröte
+- Taste 3 - Bipole
+- Taste 4 - Gleiter
+- Taste 5 - Segler
+- Taste 6 - Pentomino
 - Taste F - die Werte werden anschließend erfasst, jedes Register von 0 bis F separat
 
 ## Hintergrund
