@@ -12,6 +12,14 @@ Wenn du das ESP2090-Studio noch nicht hast, dann empfehle ich, das erst einmal z
 
 Zum Nachlesen hier das - wie immer liebevoll dokumentierte - [Programm Life2090](https://github.com/rab-berlin/Life2090/blob/main/program/Life.pdf). Und hier die [MIC-Datei](https://github.com/rab-berlin/Life2090/blob/main/program/life.mic), die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
 
+## Hintergrund
+
+_Life_ kennst du, oder? Nein? Dann bist du kein Nerd der 80er-Jahre. Oder gar kein Nerd. Aber was machst du dann auf dieser Seite? Geh weg... Nur Spaß. Bleib natürlich, wenn du magst. Aber lies erstmal in Ruhe, [was es mit _Life_ auf sich hat](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens). Es ist ein sehr interessantes Stück Computer-Geschichte. 
+
+In den 80er-Jahren lief dieses Programm auf jedem Heimcomputer mindestens einmal in irgendeiner Variante. Wir erfreuten uns daran, wie der Computer immer neue Generationen ausrechnete und darstellte. Bewunderten vielleicht manchmal die Geschwindigkeit, in der sich das emsige Treiben auf dem Bildschirm abspielte. Und mancher - wir wollen keine Namen nennen - versuchte womöglich, die philosopischen Aspekte dieser Simulation zu ergründen... Woher kommen wir? Wohin gehen wir? Hat alles ein Ende? ... Ok, genug... Ich hab´s wieder im Griff :-)
+
+Mein erster Computer, der Busch Microtronic 2090, konnte das leider nicht. Denn er hatte ja keinen Bildschirm... Bis jetzt!
+
 ## Bedienung
 
 _Life_ ist ja eigentlich kein echtes Spiel. Du bestimmst die Anfangskonfiguration und schaust danach mehr oder weniger interessiert zu, welche immer neuen Figuren und Muster daraus entstehen. Insofern ist die Interaktion mit den Programm sehr trivial.
@@ -27,19 +35,11 @@ Aus vorherigen Programmläufen können noch Werte in den Registern liegen, desha
 - Taste 6 - Pentomino
 - Taste F - die Werte werden anschließend erfasst, jedes Register von 0 bis F separat
 
-## Hintergrund
-
-_Life_ kennst du, oder? Nein? Dann bist du kein Nerd der 80er-Jahre. Oder gar kein Nerd. Aber was machst du dann auf dieser Seite? Geh weg... Nur Spaß. Bleib natürlich, wenn du magst. Aber lies erstmal in Ruhe, [was es mit _Life_ auf sich hat](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens). Es ist ein sehr interessantes Stück Computer-Geschichte. 
-
-In den 80er-Jahren lief dieses Programm auf jedem Heimcomputer mindestens einmal in irgendeiner Variante. Wir erfreuten uns daran, wie der Computer immer neue Generationen ausrechnete und darstellte. Bewunderten vielleicht manchmal die Geschwindigkeit, in der sich das emsige Treiben auf dem Bildschirm abspielte. Und mancher - wir wollen keine Namen nennen - versuchte womöglich, die philosopischen Aspekte dieser Simulation zu ergründen... Woher kommen wir? Wohin gehen wir? Hat alles ein Ende? ... Ok, genug... Ich hab´s wieder im Griff :-)
-
-Mein erster Computer, der Busch Microtronic 2090, konnte das leider nicht. Denn er hatte ja keinen Bildschirm... Bis jetzt!
-
 ## Entwicklung
 
 Wie üblich - der erste Gedanke war: Müsste doch vielleicht irgendwie gehen... Der zweite Gedanke: Nee, kann nicht klappen, zu viele Programmschritte, zu wenig Register.
 
-Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64 Zellen, das passt ja eigentlich genau in eine Registerbank (Arbeits- oder Speicherregister). Die anderen Register könnte ich dann doch zur Berechnung der Folgegeneration verwenden. 
+Zunächst einmal haben wir - bedingt durch die LED-Matrix - eine 8x8-Welt mit 64 Zellen, das passt ja eigentlich genau in eine Registerbank (Arbeits- oder Speicherregister). Die anderen Register könnte man dann doch zur Berechnung der Folgegeneration verwenden...
 
 ### Erster Ansatz
 
