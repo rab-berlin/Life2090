@@ -91,7 +91,7 @@ Wenn z.B. das Register 4 ausgewertet werden soll:
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
-Dadurch wurde zwar der Code für die Auswertung vereinheitlicht, aber die zahlreichen MOV-Operationen machten das Programm keineswegs kürzer, eher im Gegenteil. Ich hatte aber mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Dieser Ansatz passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der vefügbaren Register knapp, im Prinzip standen nur noch zwei freie Register zur Verfügung. Nicht gut.
+Dadurch wurde zwar der Code für die Auswertung vereinheitlicht, aber die zahlreichen MOV-Operationen machten das Programm keineswegs kürzer, eher im Gegenteil. Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Dieser Ansatz passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der verfügbaren Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
 
 
 
@@ -101,7 +101,7 @@ Dadurch wurde zwar der Code für die Auswertung vereinheitlicht, aber die zahlre
 
 ### Dritter Ansatz
 
-Die Idee, die Auswertungsroutine zu standardisieren, fühlte sich intuitiv richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch daran, dass die 
+Die Idee, die Auswertungsroutine zu standardisieren, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch daran, dass für jedes Register zu viele Verschiebe-Operationen durchgeführt werden mussten, insbesondere die fünf Nachbarregister waren sehr "teuer". 
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
