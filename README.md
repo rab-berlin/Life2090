@@ -186,7 +186,7 @@ Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenze
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
-Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfach die Existenz des rechten Nachbars prüfen. Daher kopieren wir das Register in TEST, schieben einmal nach rechts mit SHR und addieren das Carry, wenn es vorhanden ist, mit ADC.
+Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfach die Existenz von Bit 1 im angrenzenden rechten Register prüfen. Daher kopieren wir dieses Nachbarregister in TEST, schieben einmal bitweise nach rechts mit SHR und addieren das Carry, wenn es vorhanden ist, mit ADC.
 
 ```
            MOV UNTEN-R,TEST      Kopie in Register TEST erstellen
