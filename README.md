@@ -1,6 +1,6 @@
 # Life2090
 
-Conway´s [Game of Life](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens) auf dem Busch Microtronic 2090
+Conway's [Game of Life](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens) auf dem Busch Microtronic 2090
 
 ![Life](/pics/life.jpg)
 
@@ -10,7 +10,7 @@ Gleich vorweg: Du solltest irgendetwas haben, das die Ereignisse an den Ausgäng
 
 Wenn du das ESP2090-Studio noch nicht hast, dann empfehle ich, das erst einmal zusammenzubauen - es sei denn, du sagst: "Es reicht mir, algorithmische Schönheit in Gedanken zu bestaunen", dann auch gut. Aber zusammenlöten, anfassen und austesten macht mehr Spaß. Isso. Schreib mir, vielleicht hab ich noch ne Platine und Teile bei mir rumliegen.
 
-Zum Nachlesen hier das - wie immer schön dokumentierte - [Programm Life2090](https://github.com/rab-berlin/Life2090/blob/main/program/Life.pdf). Und hier die [MIC-Datei](https://github.com/rab-berlin/Life2090/blob/main/program/life.mic), die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
+Zum Nachlesen hier das - wie immer liebevoll dokumentierte - [Programm Life2090](https://github.com/rab-berlin/Life2090/blob/main/program/Life.pdf). Und hier die [MIC-Datei](https://github.com/rab-berlin/Life2090/blob/main/program/life.mic), die du mit geeigneten Mitteln auf deinen Microtronic bringen musst.
 
 ## Bedienung
 
