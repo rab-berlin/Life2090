@@ -14,7 +14,7 @@ Zum Nachlesen hier das - wie immer liebevoll dokumentierte - [Programm Life2090]
 
 ## Bedienung
 
-_Life_ ist ja eigentlich kein Spiel. Du bestimmst die Anfangskonfiguration und danach schaust du mehr oder weniger interessiert zu, was daraus entsteht. Insofern ist die Interaktion mit den Programm sehr trivial.
+_Life_ ist ja eigentlich kein echtes Spiel. Du bestimmst die Anfangskonfiguration und schaust danach mehr oder weniger interessiert zu, welche immer neuen Figuren und Muster daraus entstehen. Insofern ist die Interaktion mit den Programm sehr trivial.
 
 Im ESP2090-Studio muss der Button **LED Start** gedrückt sein, sonst siehst du nix.
 
