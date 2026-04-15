@@ -69,11 +69,11 @@ Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9:
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
-Andere Register bedingen aber anderen Code. Denn leider **können wir Register nicht indirekt adressieren** (also elegant Register-Pointer auf die jeweils relevanten Register mitlaufen lassen) - dafür gibt es im Befehlssatz schlicht keine Instruktionen. Das bedeutet, jedes Register bekommt seinen eigenen Code-Teil im Programm. Also 16 mal _irgendwie das gleiche_, aber mit jeweils wechselnden Registern machen. Das hätte wahrscheinlich eine knappe Million Instruktionen erfordert.
+Andere Register bedingen aber anderen Code. Denn leider **können wir Register nicht indirekt adressieren** (also elegant Register-Pointer auf die jeweils relevanten Register mitlaufen lassen) - dafür gibt es im Befehlssatz des Microtronic schlicht keine Instruktionen. Das bedeutet, jedes Register bekäme seinen eigenen Code-Teil im Programm. Also 16 mal _irgendwie fast das gleiche_, aber mit jeweils wechselnden Registern. Das hätte wahrscheinlich eine knappe Million Instruktionen erfordert.
 
 ### Zweiter Ansatz
 
-Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
+Die nächste Idee: Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
 
 Wenn z.B. das Register 4 ausgewertet werden soll:
 
@@ -88,7 +88,7 @@ Wenn z.B. das Register 4 ausgewertet werden soll:
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
-Zwar gab es in diesem Ansatz nur noch einen einzigen Code-Teil für die Auswertung, aber die zahlreichen MOV-Operationen machten das Programm insgesamt trotzdem nicht kürzer, eher im Gegenteil. Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Diese Idee passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der verfügbaren Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
+Zwar gab es in diesem Ansatz nur noch einen einzigen, immer gleichen Code-Teil für die Auswertung, aber die zahlreichen MOV-Operationen machten das Programm insgesamt trotzdem nicht kürzer, eher im Gegenteil. Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Diese Idee passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der verfügbaren Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
 
 
 
@@ -98,7 +98,7 @@ Zwar gab es in diesem Ansatz nur noch einen einzigen Code-Teil für die Auswertu
 
 ### Dritter Ansatz
 
-Die Idee, die Auswertungsroutine zu standardisieren, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch darin, dass für jedes Register zu viele - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere die fünf Nachbarregister waren sehr _teuer_. 
+Die Idee, nur eine einzige Auswertungsroutine zu haben, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte die Idee sehr _teuer_. 
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
