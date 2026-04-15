@@ -76,18 +76,18 @@ Andere Register bedingen aber anderen Code. Denn leider **können wir Register n
 
 ### Zweiter Ansatz
 
+Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
+
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
-| E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| 8<br>:red_circle: :red_circle: :red_circle: :red_circle: | 9<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| 6<br>:green_circle: :green_circle: :green_circle: :green_circle: | 7<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| 4<br>:red_circle: :red_circle: :red_circle: :red_circle: | 5<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| TEST<br>:green_circle: :green_circle: :green_circle: :green_circle: | LINKS<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| RECHTS<br>:red_circle: :red_circle: :red_circle: :red_circle: | OBEN<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| UNTEN<br>:red_circle: :red_circle: :red_circle: :red_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 8<br>:white_circle: :white_circle: :white_circle: :white_circle: | 9<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 4<br>:green_circle: :green_circle: :green_circle: :green_circle: | 5<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-
-Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
 
 Dadurch wurde zwar der Code für die Auswertung vereinheitlicht, aber die zahlreichen MOV-Operationen machten das Programm keineswegs kürzer, eher im Gegenteil. Ich hatte aber mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Dieser Ansatz passte also auch nicht in die verfügbaren 256 Programmschritte.
 
