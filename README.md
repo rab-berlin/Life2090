@@ -78,18 +78,20 @@ Andere Register bedingen aber anderen Code. Denn leider **können wir Register n
 
 Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
 
+Wenn z.B. das Register 4 ausgewertet werden soll:
+
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
-| TEST<br>:green_circle: :green_circle: :green_circle: :green_circle: | OBEN (r6)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| TEST (r4)<br>:green_circle: :green_circle: :green_circle: :green_circle: | OBEN (r6)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 | UNTEN (r2)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN (r5)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| NEBEN-O (r7)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN-U (r3)<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| NEBEN-O (r7)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN-U (r3)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
 | 8<br>:white_circle: :white_circle: :white_circle: :white_circle: | 9<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 4<br>:green_circle: :green_circle: :green_circle: :green_circle: | 5<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
-Dadurch wurde zwar der Code für die Auswertung vereinheitlicht, aber die zahlreichen MOV-Operationen machten das Programm keineswegs kürzer, eher im Gegenteil. Ich hatte aber mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Dieser Ansatz passte also auch nicht in die verfügbaren 256 Programmschritte.
+Dadurch wurde zwar der Code für die Auswertung vereinheitlicht, aber die zahlreichen MOV-Operationen machten das Programm keineswegs kürzer, eher im Gegenteil. Ich hatte aber mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Dieser Ansatz passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der vefügbaren Register knapp, im Prinzip standen nur noch zwei freie Register zur Verfügung. Nicht gut.
 
 
 
