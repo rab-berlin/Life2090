@@ -80,9 +80,9 @@ Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ei
 
 | Register<br>Bits | Register<br>Bits |
 |:---:|:---:|
-| TEST<br>:green_circle: :green_circle: :green_circle: :green_circle: | LINKS<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| RECHTS<br>:red_circle: :red_circle: :red_circle: :red_circle: | OBEN<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| UNTEN<br>:red_circle: :red_circle: :red_circle: :red_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| TEST<br>:green_circle: :green_circle: :green_circle: :green_circle: | OBEN (r6)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| UNTEN (r2)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN (r5)<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| NEBEN-O (r7)<br>:red_circle: :red_circle: :red_circle: :red_circle: | NEBEN-U (r3)<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 8<br>:white_circle: :white_circle: :white_circle: :white_circle: | 9<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 4<br>:green_circle: :green_circle: :green_circle: :green_circle: | 5<br>:white_circle: :white_circle: :white_circle: :white_circle: |
