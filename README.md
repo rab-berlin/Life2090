@@ -24,6 +24,30 @@ Mein erster Computer, der Busch Microtronic 2090, konnte das leider nicht. Denn 
 
 _Life_ ist ja eigentlich kein echtes Spiel. Du bestimmst die Anfangskonfiguration und schaust danach mehr oder weniger interessiert zu, welche immer neuen Figuren und Muster daraus entstehen. Insofern ist die Interaktion mit den Programm sehr trivial.
 
+### Matrix
+
+Die LED-Matrix ist wie der postive Quadrant eines Koordinatensystems angeordnet. Spalten gehen von links nach rechts (x-Achse), Reihen gehen von unten nach oben (y-Achse). Die Register 0-F folgen dieser Anordnung, das niedrigstwertige Bit eines Registers (LSB) ist ganz links, das höchstwertige (MSB) ganz rechts.
+
+Die Zelle (4, 4) 🟡 des Life-Spielfeldes befindet sich in Register 6 - und ist darin das höchste Bit (also der Wert 8).
+Die Zelle (1, 7) 🟣 des Life-Spielfeldes befindet sich in Register C - und ist darin das niedrigste Bit (also der Wert 1).
+Die Zelle (6, 5) 🟢 des Life-Spielfeldes befindet sich in Register 9 - und ist darin das zweit-niedrigste Bit (also der Wert 2).
+
+| Register<br>Bits | Register<br>Bits |
+|:---:|:---:|
+| E<br>:white_circle: :white_circle: :white_circle: :white_circle: | F<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| C<br>:purple_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 8<br>:white_circle: :white_circle: :white_circle: :white_circle: | 9<br>:white_circle: :green_circle: :white_circle: :white_circle: |
+| 6<br>:white_circle: :white_circle: :white_circle: :yellow_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 4<br>:white_circle: :white_circle: :white_circle: :white_circle: | 5<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+| 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
+
+
+
+
+### Start
+
 Aus vorherigen Programmläufen können noch Werte in den Registern liegen, deshalb solltest du vor Programmstart einmal die **grüne RESET-Taste** drücken. Auf der **Weboberfläche des ESP2090-Studios** muss der Button **LED Start** gedrückt sein, sonst siehst du nix. Dann startest du das Programm mit **HALT-NEXT-00-RUN** und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
 
 - Taste 0 - die Werte wurden bereits über HALT-REG-x in die Register 0-E eingegeben (Register F ist immer 0)
