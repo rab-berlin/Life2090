@@ -28,9 +28,11 @@ _Life_ ist ja eigentlich kein echtes Spiel. Du bestimmst die Anfangskonfiguratio
 
 Die Zellen in der LED-Matrix sind wie der positive Quadrant eines Koordinatensystems angeordnet. Spalten gehen von links nach rechts (x-Achse), Reihen gehen von unten nach oben (y-Achse). Die Register 0-F folgen dieser Anordnung, das niedrigstwertige Bit eines Registers (LSB) ist ganz links, das höchstwertige (MSB) ganz rechts.
 
-- Zelle (4, 4) 🟡 des Life-Spielfeldes befindet sich in Register 6 - und ist darin das höchste Bit (also der Wert 8).
-- Zelle (1, 7) 🟣 des Life-Spielfeldes befindet sich in Register C - und ist darin das niedrigste Bit (also der Wert 1).
-- Zelle (6, 5) 🟢 des Life-Spielfeldes befindet sich in Register 9 - und ist darin das zweit-niedrigste Bit (also der Wert 2).
+Als Beispiele ein paar Zellen im Life-Spielfeld:
+
+- 🟡 Zelle (4, 4) befindet sich in Register 6 - und ist darin das höchste Bit (also der Wert 8).
+- 🟣 Zelle (1, 7) befindet sich in Register C - und ist darin das niedrigste Bit (also der Wert 1).
+- 🟢 Zelle (6, 5) befindet sich in Register 9 - und ist darin das zweit-niedrigste Bit (also der Wert 2).
 
 | Register - Bits | Bits - Register |
 |:---:|:---:|
