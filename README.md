@@ -36,7 +36,7 @@ Als Beispiele ein paar Zellen im Life-Spielfeld:
 
 | Register - Bits | Bits - Register |
 |:---:|:---:|
-| E - :white_circle: &nbsp; &nbsp; :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - F |
+| E - :white_circle:&nbsp;&nbsp;:white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - F |
 | C - :purple_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - D |
 | A - :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - B |
 | 8 - :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :green_circle: :white_circle: :white_circle: - 9 |
