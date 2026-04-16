@@ -36,14 +36,14 @@ Als Beispiele ein paar Zellen im Life-Spielfeld:
 
 | Register - Bits | Bits - Register |
 |:---:|:---:|
-| E - :white_circle:&nbsp;&nbsp;:white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - F |
-| C - :purple_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - D |
-| A - :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - B |
-| 8 - :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :green_circle: :white_circle: :white_circle: - 9 |
-| 6 - :white_circle: :white_circle: :white_circle: :yellow_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - 7 |
-| 4 - :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - 5 |
-| 2 - :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - 3 |
-| 0 - :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: - 1 |
+| E - :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - F |
+| C - :purple_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - D |
+| A - :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - B |
+| 8 - :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - 9 |
+| 6 - :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:yellow_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - 7 |
+| 4 - :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - 5 |
+| 2 - :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - 3 |
+| 0 - :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: - 1 |
 
 ### Start
 
