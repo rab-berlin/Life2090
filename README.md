@@ -6,7 +6,7 @@ Conway's [Game of Life](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens) 
 
 ## Hinweis
 
-Gleich vorweg: Du solltest irgendetwas haben, das die Ereignisse an den Ausgängen des Microtronic 2090 sinnvoll interpretiert und darstellt. Und außerdem den _Takt_ vorgibt, denn die Übermittlung der einzelnen Bit-Sequenzen ist zeitkritisch. Diese Aufgaben übernimmt das [ESP2090-Studio](https://github.com/rab-berlin/ESP2090) - was du dazu wissen musst, findest du auf der entprechenden Github-Seite.
+Gleich vorweg: Du solltest irgendetwas haben, das die Signale an den Ausgängen des Microtronic 2090 sinnvoll interpretiert und darstellt. Und außerdem den _Takt_ vorgibt, denn die Übermittlung der einzelnen Bit-Sequenzen ist zeitkritisch. Diese Aufgaben übernimmt das [ESP2090-Studio](https://github.com/rab-berlin/ESP2090) - was du dazu wissen musst, findest du auf der entprechenden Github-Seite.
 
 Wenn du das ESP2090-Studio noch nicht hast, dann empfehle ich, das erst einmal zusammenzubauen - es sei denn, du sagst: "Es reicht mir, algorithmische Schönheit in Gedanken zu bestaunen", dann auch gut. Aber zusammenlöten, anfassen und austesten macht mehr Spaß. Isso. Schreib mir, vielleicht hab ich noch ne Platine und Teile bei mir rumliegen.
 
