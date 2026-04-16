@@ -36,7 +36,7 @@ Als Beispiele ein paar Zellen im Life-Spielfeld:
 
 | Register - Bits | Bits - Register |
 |:---:|:---:|
-| E&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; F |
+| E&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; F |
 | C&nbsp;&nbsp;&nbsp;&nbsp; :purple_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; D |
 | A&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; B |
 | 8&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; 9 |
