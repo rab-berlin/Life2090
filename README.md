@@ -43,6 +43,17 @@ Die LED-Matrix ist wie der postive Quadrant eines Koordinatensystems angeordnet.
 | 2<br>:white_circle: :white_circle: :white_circle: :white_circle: | 3<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 | 0<br>:white_circle: :white_circle: :white_circle: :white_circle: | 1<br>:white_circle: :white_circle: :white_circle: :white_circle: |
 
+| Register - Bits | Bits - Register |
+|:---:|:---:|
+| E :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: F |
+| C :purple_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: D |
+| A :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: B |
+| 8 :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :green_circle: :white_circle: :white_circle: 9 |
+| 6 :white_circle: :white_circle: :white_circle: :yellow_circle: | :white_circle: :white_circle: :white_circle: :white_circle: 7 |
+| 4 :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: 5 |
+| 2 :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: 3 |
+| 0 :white_circle: :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: :white_circle: 1 |
+
 
 
 
