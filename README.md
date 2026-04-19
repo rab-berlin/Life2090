@@ -112,7 +112,7 @@ Wenn z.B. das Register 4 ausgewertet werden soll:
 | r0&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; r1 |
 
 | | Register | Bits | Bits | Register | |
-| :--- | :---: | :---: | :---: | :---: | ---: |
+| ---: | :---: | :---: | :---: | :---: | :--- |
 | TEST | E | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | NEBEN |
 | UNTEN | C | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | D | OBEN |
 | NEBEN-U | A | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | B | NEBEN-O |
