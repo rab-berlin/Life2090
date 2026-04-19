@@ -100,7 +100,7 @@ Die nächste Idee: Auszuwertende Register aus der unteren Speicherhälfte werden
 
 Wenn z.B. das Register 4 ausgewertet werden soll:
 
-| Bits | Bits |
+| Register&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bits | Bits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register |
 |---:|:---|
 | TEST&nbsp;&nbsp;&nbsp;rE&nbsp;&nbsp;&nbsp;&nbsp; :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;&nbsp; rF&nbsp;&nbsp;&nbsp;NEBEN |
 | UNTEN&nbsp;&nbsp;&nbsp;rC&nbsp;&nbsp;&nbsp;&nbsp; :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;&nbsp; rD&nbsp;&nbsp;&nbsp;OBEN |
@@ -111,19 +111,13 @@ Wenn z.B. das Register 4 ausgewertet werden soll:
 | UNTEN ← r2&nbsp;&nbsp;&nbsp;&nbsp; :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;&nbsp; r3 → NEBEN-U |
 | r0&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; r1 |
 
-Zwar gab es in diesem Ansatz nur noch einen einzigen, immer gleichen Code-Teil für die Auswertung, aber die zahlreichen MOV-Operationen machten das Programm insgesamt trotzdem nicht kürzer, eher im Gegenteil. Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Diese Idee passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der verfügbaren Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
-
-
-
-
-
-
+Zwar gab es in diesem Ansatz nur noch einen einzigen, immer gleichen Code-Teil für die Auswertung, da immer die Register A-F ausgewertet werden. Aber die zahlreichen MOV-Operationen machten das Programm insgesamt trotzdem nicht kürzer, eher im Gegenteil. Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Diese Idee passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der verfügbaren Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
 
 ### Dritter Ansatz
 
-Die Idee, nur einen einzigen Code-Teil für die Auswertung zu haben, fühlte sich intuitiv aber richtig an. Denn dann müsste ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code deutlich verschlanken würde. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte den Ansatz sehr _teuer_. 
+Die Idee, nur einen einzigen Code-Teil für die Auswertung zu haben, fühlte sich intuitiv aber richtig an. Denn dann muss ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code für die Auswertung deutlich verschlankt. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte den Ansatz sehr _teuer_. 
 
-Wie wäre es denn, wenn wir nur ein einziges, immer gleiches Register in der unteren Hälfte des Arbeitsspeichers betrachten und durch einen _clever durchdachten Verschiebebahnhof_ dafür sorgen, dass alle fünfzehn anderen Register nacheinander in diesem speziellen Register landen, um dort mit der immer gleichen Routine ausgewertet zu werden? Die Frage ist natürlich rhetorisch... es zeigte sich, dass das die Lösung war. 
+Wie wäre es denn, wenn wir - wie im zweiten Ansatz - nur ein einziges, immer gleiches Register in der unteren Hälfte des Arbeitsspeichers auswerten und durch einen _clever durchdachten Verschiebebahnhof_ dafür sorgen, dass alle fünfzehn anderen Register nacheinander in diesem speziellen Register landen, um dort mit der immer gleichen Routine bearbeitet zu werden? Die Frage ist natürlich rhetorisch... es zeigte sich, dass das die Lösung war. 
 
 Dieses spezielle Register sollte fortan Register 0 sein:
 
