@@ -22,13 +22,13 @@ Mein erster Computer, der Busch Microtronic 2090, konnte das leider nicht. Denn 
 
 ## Bedienung
 
-_Life_ ist ja eigentlich kein echtes Spiel. Du bestimmst die Anfangskonfiguration und schaust danach mehr oder weniger interessiert zu, welche immer neuen Figuren und Muster daraus entstehen. Insofern ist die Interaktion mit den Programm sehr trivial.
+_Life_ ist ja eigentlich kein echtes Spiel. Du bestimmst die Anfangskonfiguration und schaust danach mehr oder weniger interessiert zu, welche neuen Figuren und Muster daraus entstehen. Insofern ist die Interaktion mit den Programm sehr trivial.
 
 ### Anordnung der Zellen
 
-Die Zellen in der LED-Matrix sind wie der positive Quadrant eines Koordinatensystems angeordnet. Spalten gehen von links nach rechts (x-Achse), Reihen gehen von unten nach oben (y-Achse). Die Register 0-F folgen dieser Anordnung, das niedrigstwertige Bit eines Registers (LSB) ist ganz links, das höchstwertige (MSB) ganz rechts.
+Die Zellen in der LED-Matrix sind wie der positive Quadrant eines kartesischen Koordinatensystems angeordnet. Spalten gehen von links nach rechts (x-Achse), Reihen gehen von unten nach oben (y-Achse). Die Register 0-F folgen dieser Anordnung, das niedrigstwertige Bit eines einzelnen Registers (LSB) ist ganz links, das höchstwertige (MSB) ganz rechts.
 
-Als Beispiele ein paar Zellen im Life-Spielfeld:
+Als Beispiel ein paar Zellen im Life-Spielfeld:
 
 | Reihe | Reg. | Bits<br>LSB → MSB<br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 | Bits<br>LSB → MSB<br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 | Reg. | |
 | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -64,7 +64,7 @@ Aus vorherigen Programmläufen können noch Werte in den Registern liegen, desha
 
 Wenn du das Startmuster selbst eingeben willst, dann hast du die Wahl. 
 
-Entweder füllst du alle nötigen Register schon vor Programmstart (mit HALT-REG-X), startest dann das Programm und wählst 0, um die Berechnung sofort anzuwerfen. 
+Entweder füllst du alle nötigen Register schon vor Programmstart (mit HALT-REG-X), startest dann das Programm und wählst 0, um die Berechnung sofort anzuwerfen. Beachte aber, dass Register F bei dieser Auswahl _bauartbedingt_ immer 0 sein wird.
 
 Oder du startest das Programm und wählst F, um anschließend alle Register von 0 bis F der Reihe nach einzugeben. Ein Blick auf die Anordnung von Zellen und Registern in der Darstellung oben hilft dir dabei, die richtigen Register mit den richtigen Werten zu füllen. Probier einmal
 
