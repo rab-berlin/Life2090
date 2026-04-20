@@ -42,7 +42,7 @@ Als Beispiele ein paar Zellen im Life-Spielfeld:
 | **1** | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 | | **Spalte** | **1**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4** | **5**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**6**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**7**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**8** | | |
 
-- Die Zellen (3,4), (4,4) und (5,4) leben - im Register 4 steht der Wert C (Bits 3 und 4 gesetzt), im Register 5 steht der Wert 1 (Bit 1 gesetzt). 
+- Die Zellen (3,4), (4,4) und (5,4) leben - im Register 4 steht daher der Wert C (Bits 3 und 4 gesetzt) und im Register 5 der Wert 1 (Bit 1 gesetzt). 
 - Die Zelle (5,6) lebt - im Register 7 steht der Wert 1 (Bit 1 gesetzt).
 - Die Zelle (4,5) lebt - im Register 8 steht der Wert 8 (Bit 4 gesetzt).
 - Alle anderen Zellen leben nicht, also steht der Wert 0 in den übrigen Registern.
@@ -59,6 +59,15 @@ Aus vorherigen Programmläufen können noch Werte in den Registern liegen, desha
 - Taste 5 - Segler
 - Taste 6 - Pentomino
 - Taste F - die Werte werden anschließend erfasst, jedes Register von 0 bis F separat
+
+### Eingabe der Register
+
+Wenn du das Startmuster selbst eingeben willst, dann hast du die Wahl. Entweder füllst du alle nötigen Register schon vor Programmstart (mit HALT-REG-X), startest dann das Programm und wählst 0, um die Berechnung sofort anzuwerfen. Oder du startest das Programm und wählst F, um anschließend alle Register von 0 bis F der Reihe nach einzugeben. Ein Blick auf die Anordnung von Zellen und Registern in der Darstellung oben hilft dir dabei, die richtigen Register mit den richtigen Werten zu füllen. Probier einmal
+
+```
+C, 3, 2, 4, 9, 9, 5, A, 1, 8, 5, A, 2, 4, C, 3 
+```
+
 
 ## Entwicklung
 
