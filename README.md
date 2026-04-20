@@ -62,7 +62,11 @@ Aus vorherigen Programmläufen können noch Werte in den Registern liegen, desha
 
 ### Eingabe der Register
 
-Wenn du das Startmuster selbst eingeben willst, dann hast du die Wahl. Entweder füllst du alle nötigen Register schon vor Programmstart (mit HALT-REG-X), startest dann das Programm und wählst 0, um die Berechnung sofort anzuwerfen. Oder du startest das Programm und wählst F, um anschließend alle Register von 0 bis F der Reihe nach einzugeben. Ein Blick auf die Anordnung von Zellen und Registern in der Darstellung oben hilft dir dabei, die richtigen Register mit den richtigen Werten zu füllen. Probier einmal
+Wenn du das Startmuster selbst eingeben willst, dann hast du die Wahl. 
+
+Entweder füllst du alle nötigen Register schon vor Programmstart (mit HALT-REG-X), startest dann das Programm und wählst 0, um die Berechnung sofort anzuwerfen. 
+
+Oder du startest das Programm und wählst F, um anschließend alle Register von 0 bis F der Reihe nach einzugeben. Ein Blick auf die Anordnung von Zellen und Registern in der Darstellung oben hilft dir dabei, die richtigen Register mit den richtigen Werten zu füllen. Probier einmal
 
 ```
 C, 3, 2, 4, 9, 9, 5, A, 1, 8, 5, A, 2, 4, C, 3 
