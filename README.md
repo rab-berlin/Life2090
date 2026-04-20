@@ -30,7 +30,7 @@ Die Zellen in der LED-Matrix sind wie der positive Quadrant eines Koordinatensys
 
 Als Beispiele ein paar Zellen im Life-Spielfeld:
 
-| Reihe | Reg. | Bits | Bits | Reg. | |
+| Reihe | Reg. | Bits<br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4<br>(LSB)…(MSB) | Bits<br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4<br>(LSB)…(MSB)  | Reg. | |
 | :---: | :---: | :---: | :---: | :---: | :--- |
 | **8** | E | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | F | |
 | **7** | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
@@ -40,7 +40,7 @@ Als Beispiele ein paar Zellen im Life-Spielfeld:
 | **3** | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
 | **2** | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
 | **1** | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
-| | Spalte | **1**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4** | **5**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**6**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**7**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**8** | | |
+| | **Spalte** | **1**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4** | **5**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**6**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**7**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**8** | | |
 
 - Die Zellen (3,4), (4,4) und (5,4) leben - im Register 4 steht der Wert C (Bits 3 und 4 gesetzt), im Register 5 steht der Wert 1 (Bit 1 gesetzt). 
 - Die Zelle (5,6) lebt - im Register 7 steht der Wert 1 (Bit 1 gesetzt).
