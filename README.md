@@ -149,6 +149,31 @@ Dieses spezielle Register sollte fortan Register 0 sein:
 | OBEN | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | NEBEN-O |
 | | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | NEBEN | 
 
+Die Berechnung der neuen Generation erfolgt schrittweise - jeweils nur für eine Hälfte des Life-Feldes: In den Arbeitsregistern 0-7 sind die auszuwertenden Register, in den Arbeitsregistern 8-F haben wir dann noch Platz für Schleife, Testregister, Zähler usw.
+
+Wenn Register 0 ab jetzt immer das auszuwertende Register ist, dann brauchen wir in einem toroidalen Spielfeld auch die Register "darunter", also E und F. Diese Register liegen aber eigentlich in den Speicherregistern, wir müssen die Register E und F daher in die Arbeitsregister "einblenden", damit sie in die Auswertung einbezogen werden. Gleichzeitig werden wir später auch die Register "oberhalb" von Register 6 benötigen, die deswegen ebenfalls in die Arbeitsregister einzublenden sind.
+
+Also befinden sich Kopien der Speicherregister 8, 9, E und F in den entsprechenden Arbeitsregistern, es bleiben dann nur noch die vier Register A-D für Operationen des Programms übrig. 
+
+Mehr braucht der Algorithmus zur Auswertung aber auch nicht: 
+
+- TEST-Register: Kopie des jeweils auszuwertenden Registers, wird durch Bitoperationen "konsumiert"
+- ANZAHL-Register: Zähler für die Anzahl der lebenden Nachbarn einer Zelle
+- ERGREG-Register: Ergebnis der Auswertung, wird schrittweise mit den berechneten Bits gefüllt und rotiert
+- SCHLEIFE-Register: Schleifenzähler (Hinweis weiter unten)
+
+| | Reg. | Bits | Bits | Reg. | |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| UNTEN | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | NEBEN-U |
+| TEST | C | :yellow_circle:&nbsp;&nbsp;&nbsp;:yellow_circle:&nbsp;&nbsp;&nbsp;:yellow_circle:&nbsp;&nbsp;&nbsp;:yellow_circle: | :blue_circle:&nbsp;&nbsp;&nbsp;:blue_circle:&nbsp;&nbsp;&nbsp;:blue_circle:&nbsp;&nbsp;&nbsp;:blue_circle: | D | SCHLEIFE |
+| ANZAHL | A | :purple_circle:&nbsp;&nbsp;&nbsp;:purple_circle:&nbsp;&nbsp;&nbsp;:purple_circle:&nbsp;&nbsp;&nbsp;:purple_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | B | ERGREG |
+| | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 9 | |
+| | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
+| | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
+| OBEN | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | NEBEN-O |
+| | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | NEBEN | 
+
+
 
 ## Geschwindigkeit
 
