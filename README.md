@@ -146,8 +146,8 @@ Dieses spezielle Register sollte fortan Register 0 sein:
 | | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | |
 | | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
 | | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
-| OBEN-R0 | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | OBEN-R1 |
-| | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | NEBEN | 
+| | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | |
+| | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | | 
 
 Die Berechnung der neuen Generation erfolgt schrittweise - jeweils nur für eine Hälfte des Life-Feldes: In den Arbeitsregistern 0-7 sind die auszuwertenden Register, in den Arbeitsregistern 8-F haben wir dann noch Platz für Schleife, Testregister, Zähler usw.
 
