@@ -140,10 +140,10 @@ Dieses spezielle Register sollte fortan Register 0 sein:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
-| UNTEN | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | NEBEN-U |
+| UNTEN | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | NEBEN-U |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
 | | A | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | B | |
-| | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 9 | |
+| | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | |
 | | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
 | | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
 | OBEN | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | NEBEN-O |
