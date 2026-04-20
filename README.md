@@ -138,16 +138,16 @@ Wie wäre es denn, wenn wir - wie im zweiten Ansatz - nur ein einziges, immer gl
 
 Dieses spezielle Register sollte fortan Register 0 sein:
 
-| Register<br>Bits | Register<br>Bits |
-|:---:|:---:|
-| UNTEN-L<br>:red_circle: :red_circle: :red_circle: :red_circle: | UNTEN-R<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| C<br>:white_circle: :white_circle: :white_circle: :white_circle: | D<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| A<br>:white_circle: :white_circle: :white_circle: :white_circle: | B<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| OBEN-L<br>:white_circle: :white_circle: :white_circle: :white_circle: | OBEN-R<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| 6<br>:white_circle: :white_circle: :white_circle: :white_circle: | 7<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| 4<br>:white_circle: :white_circle: :white_circle: :white_circle: | 5<br>:white_circle: :white_circle: :white_circle: :white_circle: |
-| 2<br>:red_circle: :red_circle: :red_circle: :red_circle: | 3<br>:red_circle: :red_circle: :red_circle: :red_circle: |
-| 0<br>:green_circle: :green_circle: :green_circle: :green_circle: | 1<br>:red_circle: :red_circle: :red_circle: :red_circle: |
+| | Reg. | Bits | Bits | Reg. | |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| UNTEN | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | NEBEN-U |
+| | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
+| | A | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | B | |
+| | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | |
+| | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
+| | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
+| OBEN | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | NEBEN-O |
+| | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | NEBEN | 
 
 
 ## Geschwindigkeit
@@ -174,9 +174,9 @@ Um alle Register auszuwerten, müssen wir sie nacheinander in das Testregister 0
 - OU-Schleife: Nach jedem achten Durchlauf tauschen die **oberen Register** 8-F mit den **unteren Registern** 0-7.
 - Äußere Schleife: Nach jedem 16. Durchlauf werden die Register auf der **LED-Matrix dargestellt**.
 
-Ohne groß nachzudenken, würde man dafür in einer Hochsprache einfach drei FOR-Schleifen mit drei unterschiedlichen Index-Variablen ineinander legen (= verschachteln). Register sind beim Microtronic aber kostbar und in diesem Fall schon fast alle belegt. Ich musste mit nur einem Index-Register _SCHLEIFE_ auskommen.
+Ohne groß nachzudenken, würde man dafür in einer Hochsprache einfach drei FOR-Schleifen mit drei unterschiedlichen Index-Variablen ineinander legen (= verschachteln). Register sind beim Microtronic aber kostbar und in diesem Fall schon fast alle belegt. Ich musste mit nur **einem Index-Register** _SCHLEIFE_ für **alle drei Schleifen gemeinsam** auskommen.
 
-Das geht aber verhältnismäßig einfach und elegant, wenn man das Bitmuster der Schleifenregisters auswertet. Denn bei jedem vierten Durchlauf (und nur dann) sind die Bits 1 und 2 des Schleifenregisters gesetzt, bei jedem achten Durchlauf die Bits 1, 2 und 3 und bei jedem 16. Durchlauf alle 4 Bits. Mit _ANDI_ blenden wir die anderen Bits aus und können dann entscheiden, ob die Schleife in die nächsthöhere Ebene verlassen werden soll. 
+Das geht aber verhältnismäßig einfach und elegant, wenn man das Bitmuster der Schleifenregisters auswertet. Denn bei jedem vierten Durchlauf (und nur dann) sind die Bits 1 und 2 des Schleifenregisters gesetzt, bei jedem achten Durchlauf die Bits 1, 2 und 3 und bei jedem 16. Durchlauf alle 4 Bits. Mit ANDI blenden wir die anderen Bits aus und können dann entscheiden, ob die Schleife in die nächsthöhere Ebene verlassen werden soll. 
 
 Exemplarisch für die innere Schleife:
 
