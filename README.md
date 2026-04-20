@@ -30,22 +30,6 @@ Die Zellen in der LED-Matrix sind wie der positive Quadrant eines Koordinatensys
 
 Als Beispiele ein paar Zellen im Life-Spielfeld:
 
-- 🟡 Zelle (4, 4) befindet sich in Register 6 - und ist darin das höchste Bit (also der Wert 8).
-- 🟣 Zelle (1, 7) befindet sich in Register C - und ist darin das niedrigste Bit (also der Wert 1).
-- 🟢 Zelle (6, 5) befindet sich in Register 9 - und ist darin das zweit-niedrigste Bit (also der Wert 2).
-
-| Register - Bits | Bits - Register |
-|:---:|:---:|
-| E&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; F |
-| C&nbsp;&nbsp;&nbsp;&nbsp; :purple_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; D |
-| A&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; B |
-| 8&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; 9 |
-| 6&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:yellow_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; 7 |
-| 4&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; 5 |
-| 2&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; 3 |
-| 0&nbsp;&nbsp;&nbsp;&nbsp; :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;&nbsp; 1 |
-
-
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | Reihe 8 | E | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | F | |
@@ -57,6 +41,11 @@ Als Beispiele ein paar Zellen im Life-Spielfeld:
 | Reihe 2 | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
 | Reihe 1 | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 | Spalte | | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 | 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 | | |
+
+- Die Zellen (3,4), (4,4) und (5,4) leben - im Register 4 steht der Wert C (Bits 3 und 4 gesetzt), im Register 5 steht der Wert 1 (Bit 1 gesetzt). 
+- Die Zelle (5,6) lebt - im Register 7 steht der Wert 1 (Bit 1 gesetzt).
+- Die Zelle (4,5) lebt - im Register 8 steht der Wert 8 (Bit 4 gesetzt).
+- Alle anderen Zellen leben nicht, also steht der Wert 0 in den übrigen Registern.
 
 ### Start
 
