@@ -165,8 +165,8 @@ Mehr braucht der Algorithmus zur Auswertung aber auch nicht:
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | UNTEN | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | NEBEN-U |
-| TEST | C | :yellow_circle:&nbsp;&nbsp;&nbsp;:yellow_circle:&nbsp;&nbsp;&nbsp;:yellow_circle:&nbsp;&nbsp;&nbsp;:yellow_circle: | :blue_circle:&nbsp;&nbsp;&nbsp;:blue_circle:&nbsp;&nbsp;&nbsp;:blue_circle:&nbsp;&nbsp;&nbsp;:blue_circle: | D | SCHLEIFE |
-| ANZAHL | A | :purple_circle:&nbsp;&nbsp;&nbsp;:purple_circle:&nbsp;&nbsp;&nbsp;:purple_circle:&nbsp;&nbsp;&nbsp;:purple_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | B | ERGREG |
+| TEST | C | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | D | SCHLEIFE |
+| ANZAHL | A | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | B | ERGREG |
 | | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 9 | |
 | | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
 | | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
