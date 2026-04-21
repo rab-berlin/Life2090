@@ -193,7 +193,7 @@ Zum Beispiel werden für das vierte Bit (MSB) alle lebenden Nachbarzellen gezäh
 | | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
 | | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 
-Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register KOPIE. Da immer nur die roten Bits gezählt werden sollen, werden irrelevante Bits im Register KOPIE vorher mit ANDI gelöscht (Bit-maskiert). Durch bitweises Verschieben (SHR und SHL) werden die relevanten Bits als Carry "herausgeschüttelt" und zur ANZAHL der lebenden Nachbarzellen mit ADC addiert.
+Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register KOPIE. Um nur die unmittelbaren Nachbarn zu zählen, werden die betreffenden Bits mit SHL und SHR aus dem Register KOPIE "herausgeschüttelt" und mit ADC zur ANZAHL der lebenden Nachbarzellen addiert.
 
 ```
            MOV UNTER-R1,KOPIE         rechter Rand unten in KOPIE
@@ -206,14 +206,12 @@ Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register K
            SHR KOPIE                  Bit 1 testen
            ADC ANZAHL                 und ggf. addieren
            MOV UNTER-R0,KOPIE         unterer Rand in KOPIE
-           ANDI #C,KOPIE              löscht Bits 1 und 2
-           CALL CountL2               zählt nur Bits 3 und 4
+           CALL CountL2               zählt Bits 3 und 4
            MOV r0,KOPIE               Selbst in KOPIE
-           ANDI #4,KOPIE              löscht Bit 1, 2 und 4
-           CALL CountL2               zählt also nur Bit 3 
+           SHL KOPIE                  schiebt Bit 4 heraus (ohne zu zählen)
+           CALL CountL1               zählt also nur Bit 3 
            MOV r2,KOPIE               oberer Rand in KOPIE
-           ANDI #C,KOPIE              löscht Bits 1 und 2
-           CALL CountL2               zählt nur Bits 3 und 4
+           CALL CountL2               zählt Bits 3 und 4
            CALL ConwayRules           ermittelt neuen Zustand der Zelle
 ```
 
@@ -232,8 +230,20 @@ Für die Bits 2 und 3 ist die Ermittlung übrigens weniger aufwändig, da nur dr
 | | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
 | | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 
- 
+Da nur die Nachbarzellen, nicht aber die Testzelle selbst addiert werden sollen, wird dieses Bit im Register KOPIE vorher mit ANDI gelöscht (Bit-maskiert). 
 
+```
+           MOV UNTER-R0,KOPIE         unterer Rand in KOPIE
+           CALL CountL3               zählt Bit 2, 3 und 4
+           MOV r0,KOPIE               Selbst in KOPIE
+           ANDI #A,KOPIE              maskiert Bit 3
+           CALL CountL3               zählt also nur Bit 2 und 4
+           MOV r2,KOPIE               oberer Rand in KOPIE
+           CALL CountL3               zählt Bit 2, 3 und 4
+           CALL ConwayRules           ermittelt neuen Zustand der Zelle
+```
+
+...
 
 ## Geschwindigkeit
 
