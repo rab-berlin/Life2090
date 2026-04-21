@@ -247,7 +247,7 @@ Da nur die Nachbarzellen, nicht aber die Testzelle selbst addiert werden sollen,
 
 ## Geschwindigkeit
 
-Das Programm ist ziemlich rechenintensiv. Die Operationen selbst sind nicht komplex, innerhalb der Schleife werden eigentlich nur ein paar Bits hin- und hergeschoben, ein paar Register getauscht, ein bisschen addiert und verglichen. Aber die Menge macht´s... 
+Das Programm ist ziemlich rechenintensiv. Die Operationen selbst sind nicht komplex, innerhalb der Schleife werden eigentlich nur ein paar Bits hin- und hergeschoben, ein paar Register getauscht, ein bisschen addiert und verglichen. Aber die Menge macht's...
 
 Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa **168 Instruktionen** abgearbeitet werden. Da der Microtronic mehr als doppelt so schnell rechnet, wenn das Display ausgeschaltet bleibt, ist DISOUT praktisch ein Muss. Dann braucht ein Befehl immer noch 9 ms, also sind 168 Befehle in 1,5 Sekunden durchlaufen. 
 
@@ -331,15 +331,15 @@ Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfac
 
 … ist nicht zu unterschätzen.
 
-Zunächst gab es nur ein Unterprogramm _Count_ für die Zählung aller vier Bits im Register KOPIE. Alle nicht zu zählenden Bits wurden in der inneren Schleife zuvor über ANDI gelöscht. Das funktionierte gut.
+Zunächst gab es nur ein Unterprogramm _Count_ für die Zählung aller vier Bits im Register KOPIE. Alle nicht zu zählenden Bits wurden in der inneren Schleife zuvor über ANDI gelöscht. Das funktionierte.
 
 ![Count Count](/pics/count_count.jpg)
 *Foto: [Barry Stock](https://www.flickr.com/photos/74388673@N00) / [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)*
 
-Als ich dann dokumentieren wollte, wie lange eine Generation braucht, um berechnet zu werden, musste ich messen. Und genau dabei kam dann die Überlegung auf, wie ich das ein bisschen schneller machen könnte. Die Zähl-Routine _Count_ iterierte ja immer über alle vier Bits, also oft über Bits, die ich gerade vorher mit ANDI maskiert hatte. Unnötig eigentlich. 
+Als ich dann dokumentieren wollte, wie lange eine Generation braucht, um berechnet zu werden, musste ich messen. Und genau dabei kam dann die Überlegung auf: Wie kriege ich das ein bisschen schneller hin? Die Zähl-Routine _Count_ iterierte ja immer über alle vier Bits, also oft über Bits, die ich gerade vorher mit ANDI maskiert hatte. Unnötig eigentlich. 
 
-Also stellte ich zwei Zähl-Routinen mit mehreren Einsprung-Adressen zur Verfügung - eine zählt x-mal nach links, eine zählt x-mal nach rechts: _CountLx_ und _CountRx_. Dadurch wurden dann immer nur noch so viele Bits wie nötig gezählt. Das funktionierte besser (minus 2 Sekunden).
+Also stellte ich zwei Zähl-Routinen mit mehreren Einsprung-Adressen zur Verfügung - eine zählt x-mal nach links, eine zählt x-mal nach rechts: _CountLx_ und _CountRx_. Dadurch wurden dann immer nur noch so viele Bits wie nötig gezählt. Das funktionierte gut (minus 2 Sekunden).
 
-Und beim Kommentieren stellte ich dann irgendwann fest, dass die ANDI-Operationen zur Maskierung nicht zu zählender Bits immer noch in der inneren Schleife waren. Das war zwar sehr ordentlich, aber gar nicht mehr nötig. Weg damit. Das funktionierte noch besser (minus 2 Sekunden).
+Und beim Kommentieren stellte ich dann irgendwann fest, dass die ANDI-Operationen zur Maskierung nicht zu zählender Bits immer noch in der inneren Schleife waren. Das war zwar sehr ordentlich, aber inzwischen gar nicht mehr nötig. Weg damit. Das funktionierte noch besser (minus 2 Sekunden).
 
-Hätte ich keine Notwendigkeit gehabt, alle Schritte nachvollziehbar zu kommentieren, wären diese überflüssigen Operationen sicher in der Schleife verblieben - und die Berechnung einer neuen Generation hätte jeweils insgesamt 4 Sekunden länger gedauert.
+Hätte ich keine Notwendigkeit gehabt, alle Schritte nachvollziehbar zu kommentieren, wären diese überflüssigen Operationen sicher in der Schleife verblieben - und die Berechnung einer neuen Generation hätte jeweils 4 Sekunden länger gedauert.
