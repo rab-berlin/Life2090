@@ -327,4 +327,16 @@ Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfac
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
+## Der Nutzen von Kommentaren
 
+… ist nicht zu unterschätzen.
+
+Zunächst gab es nur ein Unterprogramm _Count_ für die Zählung aller vier Bits im Register KOPIE. Alle nicht zu zählenden Bits wurden in der inneren Schleife zuvor über ANDI gelöscht. Das funktionierte gut.
+
+Als ich dann dokumentieren wollte, wie lange eine Generation braucht, um berechnet zu werden, musste ich messen. Und genau dabei kam dann die Überlegung auf, wie ich das ein bisschen schneller machen könnte. Die Zähl-Routine _Count_ iterierte ja immer über alle vier Bits, also oft über Bits, die ich gerade vorher mit ANDI maskiert hatte. Unnötig eigentlich. 
+
+Also stellte ich zwei Zähl-Routinen mit mehreren Einsprungadressen zur Verfügung - eine zählt x-mal nach links, eine zählt x-mal nach rechts: _CountLx_ und _CountRx_. Dadurch wurden dann immer nur noch so viele Bits wie nötig gezählt. Das funktionierte besser (minus 2 Sekunden).
+
+Und beim Kommentieren stellte ich dann irgendwann fest, dass die ANDI-Operationen zur Maskierung nicht zu zählender Bits immer noch in der inneren Schleife waren. Das war zwar sehr ordentlich, aber gar nicht mehr nötig. Weg damit. Das funktionierte noch besser (minus 2 Sekunden).
+
+Hätte ich keine Notwendigkeit gehabt, alle Schritte nachvollziehbar zu kommentieren, wären diese überflüssigen Operationen sicher in der Schleife verblieben - und die Berechnung einer neuen Generation hätte jeweils insgesamt 4 Sekunden länger gedauert.
