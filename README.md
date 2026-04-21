@@ -167,7 +167,7 @@ Mehr braucht der Algorithmus zur Auswertung aber auch nicht:
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | UNTER-R0 | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | UNTER-R1 |
 | KOPIE | C | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | D | SCHLEIFE |
-| ANZAHL | A | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | B | ERGREG |
+| ANZAHL | A | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | B | ERGEBNIS |
 | ÜBER-R6 | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 9 | ÜBER-R7 |
 | | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
 | | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
@@ -193,7 +193,7 @@ Zum Beispiel werden für das vierte Bit (MSB) alle lebenden Nachbarzellen gezäh
 | | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
 | | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 
-Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register KOPIE. Da immer nur die roten Bits gezählt werden sollen, werden nicht zu zählende Bits im Registrer KOPIE nötigenfalls vorher mit ANDI gelöscht (Bit-maskiert). Alle dann noch übrigen Bits werden dann zur Gesamtzahl der lebenden Nachbarzellen addiert. Diese Addition erfolgt durch bitweises Verschieben des Registers KOPIE mit SHR und SHL. Jedes dabei herausfallende Carry wird mit ADC zur ANZAHL addiert. 
+Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register KOPIE. Da immer nur die roten Bits gezählt werden sollen, werden nicht zu zählende Bits im Register KOPIE nötigenfalls vorher mit ANDI gelöscht (Bit-maskiert). Durch bitweises Verschieben (SHR und SHL) werden die übriggebliebenen Bits als Carry "herausgeschüttelt" und zur ANZAHL der lebenden Nachbarzellen mit ADC addiert.
 
 ```
            MOV UNTER-R1,KOPIE         rechter Rand unten in KOPIE
