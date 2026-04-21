@@ -52,13 +52,13 @@ Als Beispiel ein paar Zellen im Life-Spielfeld:
 Aus vorherigen Programmläufen können noch Werte in den Registern liegen, deshalb solltest du vor Programmstart einmal die **grüne RESET-Taste** drücken. Auf der **Weboberfläche des ESP2090-Studios** muss der Button **LED Start** gedrückt sein, sonst siehst du nix. Dann startest du das Programm mit **HALT-NEXT-00-RUN** und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
 
 - Taste 0 - die Werte wurden bereits über HALT-REG-x in die Register 0-E eingegeben (Register F ist immer 0)
-- Taste 1 - Blinker
-- Taste 2 - Uhr
-- Taste 3 - Kröte
-- Taste 4 - Bipole
-- Taste 5 - Gleiter
-- Taste 6 - Segler
-- Taste 7 - Pentomino
+- Taste 1 - Uhr
+- Taste 2 - Kröte
+- Taste 3 - Bipole
+- Taste 4 - Gleiter
+- Taste 5 - Segler
+- Taste 6 - Pentomino
+- Taste 7 - Suppe (ein zufälliges Startmuster)
 - Taste F - die Werte werden anschließend erfasst, jedes Register von 0 bis F separat
 
 ### Eingabe der Register
@@ -308,9 +308,9 @@ Daher beginnt die Bit-Auswertung in der inneren Schleife mit dem Most Significan
 
 ### Abkürzung
 
-Den ADC-Befehl können wir auch zur Auswertung der links bei Bit 1 und rechts bei Bit 4 angrenzenden Register vorteilhaft nutzen.
+Den ADC-Befehl können wir auch zur Auswertung der links bei Bit 1 angrenzenden Register vorteilhaft nutzen.
 
-Normalerweise wird das Register, dessen Bits wir zählen wollen, in KOPIE geschoben. Dann werden dort die Bits, die nicht in die Summe einfließen sollen, mit ANDI gelöscht und zum Schluss mit SHL, SHR und ADC gezählt (Unterprogramme _CountX_).
+Normalerweise wird das Register, dessen Bits wir zählen wollen, in KOPIE geschoben. Dort werden die Bits, die in die Summe einfließen sollen, mit SHL, SHR und ADC gezählt (Unterprogramme _CountLx_ und _CountRx_).
 
 Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenzende Register (der linke Nachbar von Bit 1) größer als 7 ist. Denn dann ist das vierte Bit gesetzt, also lebt der Nachbar und wird direkt mit ADC zur Summe addiert. 
 
@@ -319,13 +319,8 @@ Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenze
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
-Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfach die Existenz von Bit 1 im angrenzenden rechten Register prüfen. Daher kopieren wir dieses Nachbarregister in KOPIE, schieben einmal bitweise nach rechts mit SHR und addieren das Carry, wenn es vorhanden ist, mit ADC.
+Bei Bit 4 geht das nicht, denn mit CMPI können wir nicht einfach die Existenz von Bit 1 im angrenzenden rechten Register prüfen. Daher nutzen wir hier die bekannte Zähl-Routine _CountR1_.
 
-```
-           MOV UNTEN-R,KOPIE     Kopie in Register TEST erstellen
-           SHR KOPIE             Bit 1 in rechtem Nachbarregister herausschieben, Carry?
-           ADC ANZAHL            Dann +1 in Anzahl Nachbarn
-```
 
 ## Der Nutzen von Kommentaren
 
