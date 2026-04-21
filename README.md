@@ -179,7 +179,7 @@ Mehr braucht der Algorithmus zur Auswertung aber auch nicht:
 
 Wir haben einen Mechanismus gefunden, durch den nacheinander alle Register in das immer gleiche Test-Register 0 zur Auswertung gelangen. Die eigentliche Auswertung erfolgt dann Bit für Bit. 
 
-Zum Beispiel müssen für das vierte Bit (MSB) alle lebenden Nachbarzellen gezählt werden:
+Zum Beispiel werden für das vierte Bit (MSB) alle lebenden Nachbarzellen gezählt:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -192,7 +192,7 @@ Zum Beispiel müssen für das vierte Bit (MSB) alle lebenden Nachbarzellen gezä
 | | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
 | | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 
-Alle Nachbarregister und das Test-Register 0 landen nacheinander im Register KOPIE. Da immer nur die roten Bits gezählt werden sollen, werden nicht zu zählende Bits nötigenfalls vorher mit ANDI gelöscht (Bit-maskiert) und dann zur Gesamtzahl der lebenden Nachbarzellen addiert. Diese Addition erfolgt durch bitweises Verschieben des Registers KOPIE mit SHR und SHL. Jedes dabei herausfallende Carry wird mit ADC zur ANZAHL addiert. 
+Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register KOPIE. Da immer nur die roten Bits gezählt werden sollen, werden nicht zu zählende Bits im Registrer KOPIE nötigenfalls vorher mit ANDI gelöscht (Bit-maskiert). Alle dann noch übrigen Bits werden dann zur Gesamtzahl der lebenden Nachbarzellen addiert. Diese Addition erfolgt durch bitweises Verschieben des Registers KOPIE mit SHR und SHL. Jedes dabei herausfallende Carry wird mit ADC zur ANZAHL addiert. 
 
 ```
            MOV UNTEN-R1,KOPIE         rechter Rand unten in KOPIE
@@ -213,12 +213,12 @@ Alle Nachbarregister und das Test-Register 0 landen nacheinander im Register KOP
            MOV r2,KOPIE               oberer Rand in KOPIE
            ANDI #C,KOPIE              löscht Bits 1 und 2
            CALL CountL2               zählt nur Bits 3 und 4
-           CALL ConwayRules	      ermittelt neuen Zustand der Zelle
+           CALL ConwayRules           ermittelt neuen Zustand der Zelle
 ```
 
 Die anderen Bits des Test-Registers 0 werden ebenfalls entsprechend ausgewertet. Ergebnis-Bits werden in das Register ERGEBNIS geschrieben.
 
-Für die Bits 2 und 3 ist die Ermittlung übrigens weniger aufwändig, da nur die beiden Register oberhalb und unterhalb des Testregisters sowie das Testregister selbst berücksichtigt werden müssen - die Nachbarn rechts und links befinden sich bereits im Testregister 0:
+Für die Bits 2 und 3 ist die Ermittlung übrigens weniger aufwändig, da nur drei Register (die beiden Register oberhalb und unterhalb des Testregisters sowie das Testregister selbst) berücksichtigt werden müssen - die Nachbarn rechts und links befinden sich bereits im Testregister 0:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -240,7 +240,7 @@ Das Programm ist ziemlich rechenintensiv. Die Operationen selbst sind nicht komp
 
 Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa **177 Instruktionen** abgearbeitet werden. Da der Microtronic mehr als doppelt so schnell rechnet, wenn das Display ausgeschaltet bleibt, ist DISOUT praktisch ein Muss. Dann braucht ein Befehl immer noch 9 ms, also sind 177 Befehle in 1,6 Sekunden durchlaufen. 
 
-Alle 16 Register werden somit - theoretisch - innerhalb von 25,5 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **32 Sekunden** für Berechnung und Anzeige einer kompletten **Folgegeneration** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
+Alle 16 Register werden somit _theoretisch_ innerhalb von 25,5 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **32 Sekunden** für Berechnung und Anzeige der kompletten folgenden **Generation** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
 
 Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht das Programm aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann 28 Sekunden für die Berechnung einer Generation, also 12,5% Geschwindigkeitssteigerung. Ordentlich, aber zieht jetzt auch nicht die Wurst vom Teller. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
 
