@@ -315,7 +315,7 @@ Normalerweise wird das Register, dessen Bits wir zählen wollen, in KOPIE gescho
 Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenzende Register (der linke Nachbar von Bit 1) größer als 7 ist. Denn dann ist das vierte Bit gesetzt, also lebt der Nachbar und wird direkt mit ADC zur Summe addiert. 
 
 ```
-           CMPI #7,UNTEN-R       Bit 4 in linkem Nachbarrregister gesetzt?
+           CMPI #7,UNTEN-R       Bit 4 in linkem Nachbarregister gesetzt?
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
@@ -323,7 +323,7 @@ Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfac
 
 ```
            MOV UNTEN-R,KOPIE     Kopie in Register TEST erstellen
-           SHR KOPIE             Bit 1 in rechtem Nachbarrregister herausschieben, Carry?
+           SHR KOPIE             Bit 1 in rechtem Nachbarregister herausschieben, Carry?
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
@@ -331,11 +331,13 @@ Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfac
 
 … ist nicht zu unterschätzen.
 
+[Count Count](https://www.clipartmax.com/png/small/29-296352_sesame-street-clipart-count-von-count-sesame-street-clipart-count-von-count.png)
+
 Zunächst gab es nur ein Unterprogramm _Count_ für die Zählung aller vier Bits im Register KOPIE. Alle nicht zu zählenden Bits wurden in der inneren Schleife zuvor über ANDI gelöscht. Das funktionierte gut.
 
 Als ich dann dokumentieren wollte, wie lange eine Generation braucht, um berechnet zu werden, musste ich messen. Und genau dabei kam dann die Überlegung auf, wie ich das ein bisschen schneller machen könnte. Die Zähl-Routine _Count_ iterierte ja immer über alle vier Bits, also oft über Bits, die ich gerade vorher mit ANDI maskiert hatte. Unnötig eigentlich. 
 
-Also stellte ich zwei Zähl-Routinen mit mehreren Einsprungadressen zur Verfügung - eine zählt x-mal nach links, eine zählt x-mal nach rechts: _CountLx_ und _CountRx_. Dadurch wurden dann immer nur noch so viele Bits wie nötig gezählt. Das funktionierte besser (minus 2 Sekunden).
+Also stellte ich zwei Zähl-Routinen mit mehreren Einsprung-Adressen zur Verfügung - eine zählt x-mal nach links, eine zählt x-mal nach rechts: _CountLx_ und _CountRx_. Dadurch wurden dann immer nur noch so viele Bits wie nötig gezählt. Das funktionierte besser (minus 2 Sekunden).
 
 Und beim Kommentieren stellte ich dann irgendwann fest, dass die ANDI-Operationen zur Maskierung nicht zu zählender Bits immer noch in der inneren Schleife waren. Das war zwar sehr ordentlich, aber gar nicht mehr nötig. Weg damit. Das funktionierte noch besser (minus 2 Sekunden).
 
