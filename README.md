@@ -331,10 +331,10 @@ Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfac
 
 … ist nicht zu unterschätzen.
 
-![Count Count](/pics/count_count.jpg)
-*Foto: [Barry Stock](https://www.flickr.com/photos/74388673@N00) / [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)
-
 Zunächst gab es nur ein Unterprogramm _Count_ für die Zählung aller vier Bits im Register KOPIE. Alle nicht zu zählenden Bits wurden in der inneren Schleife zuvor über ANDI gelöscht. Das funktionierte gut.
+
+![Count Count](/pics/count_count.jpg)
+*Foto: [Barry Stock](https://www.flickr.com/photos/74388673@N00) / [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)*
 
 Als ich dann dokumentieren wollte, wie lange eine Generation braucht, um berechnet zu werden, musste ich messen. Und genau dabei kam dann die Überlegung auf, wie ich das ein bisschen schneller machen könnte. Die Zähl-Routine _Count_ iterierte ja immer über alle vier Bits, also oft über Bits, die ich gerade vorher mit ANDI maskiert hatte. Unnötig eigentlich. 
 
