@@ -239,11 +239,11 @@ Für die Bits 2 und 3 ist die Ermittlung übrigens weniger aufwändig, da nur dr
 
 Das Programm ist ziemlich rechenintensiv. Die Operationen selbst sind nicht komplex, innerhalb der Schleife werden eigentlich nur ein paar Bits hin- und hergeschoben, ein paar Register getauscht, ein bisschen addiert und verglichen. Aber die Menge macht´s... 
 
-Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa **180 Instruktionen** abgearbeitet werden. Da der Microtronic mehr als doppelt so schnell rechnet, wenn das Display ausgeschaltet bleibt, ist DISOUT praktisch ein Muss. Dann braucht ein Befehl immer noch 9 ms, also sind 180 Befehle in 1,6 Sekunden durchlaufen. 
+Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa **168 Instruktionen** abgearbeitet werden. Da der Microtronic mehr als doppelt so schnell rechnet, wenn das Display ausgeschaltet bleibt, ist DISOUT praktisch ein Muss. Dann braucht ein Befehl immer noch 9 ms, also sind 168 Befehle in 1,5 Sekunden durchlaufen. 
 
-Alle 16 Register werden somit _theoretisch_ innerhalb von 26 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **32 Sekunden** für Berechnung und Anzeige der kompletten folgenden **Generation** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
+Alle 16 Register werden somit _theoretisch_ innerhalb von etwa 24 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **30 Sekunden** für Berechnung und Anzeige der kompletten folgenden **Generation** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
 
-Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht den Programmcode aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann 28 Sekunden für die Berechnung einer Generation, also 12,5% Geschwindigkeitssteigerung. Ordentlich, aber zieht jetzt auch nicht die Wurst vom Teller. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
+Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht den Programmcode aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann xx Sekunden für die Berechnung einer Generation, also xx% Geschwindigkeitssteigerung. Ordentlich, aber zieht jetzt auch nicht die Wurst vom Teller. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
 
 
 ## Programmtricks
