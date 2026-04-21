@@ -197,14 +197,11 @@ Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register K
 
 ```
            MOV UNTER-R1,KOPIE         rechter Rand unten in KOPIE
-           SHR KOPIE                  Bit 1 testen
-           ADC ANZAHL                 und ggf. addieren
+           CALL CountR1               zählt Bit 1
            MOV r1,KOPIE               rechter Rand mitte in KOPIE
-           SHR KOPIE                  Bit 1 testen
-           ADC ANZAHL                 und ggf. addieren
+           CALL CountR1               zählt Bit 1
            MOV r3,KOPIE               rechter Rand oben in KOPIE
-           SHR KOPIE                  Bit 1 testen
-           ADC ANZAHL                 und ggf. addieren
+           CALL CountR1               zählt Bit 1
            MOV UNTER-R0,KOPIE         unterer Rand in KOPIE
            CALL CountL2               zählt Bits 3 und 4
            MOV r0,KOPIE               Selbst in KOPIE
@@ -249,9 +246,9 @@ Da nur die Nachbarzellen, nicht aber die Testzelle selbst addiert werden sollen,
 
 Das Programm ist ziemlich rechenintensiv. Die Operationen selbst sind nicht komplex, innerhalb der Schleife werden eigentlich nur ein paar Bits hin- und hergeschoben, ein paar Register getauscht, ein bisschen addiert und verglichen. Aber die Menge macht's...
 
-Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa **168 Instruktionen** abgearbeitet werden. Da der Microtronic mehr als doppelt so schnell rechnet, wenn das Display ausgeschaltet bleibt, ist DISOUT praktisch ein Muss. Dann braucht ein Befehl immer noch 9 ms, also sind 168 Befehle in 1,5 Sekunden durchlaufen. 
+Um die neue Generation eines **einzelnen Registers** zu berechnen, müssen etwa **174 Instruktionen** abgearbeitet werden. Da der Microtronic mehr als doppelt so schnell rechnet, wenn das Display ausgeschaltet bleibt, ist DISOUT praktisch ein Muss. Dann braucht ein Befehl immer noch 9 ms, also sind 174 Befehle in 1,5 Sekunden durchlaufen. 
 
-Alle 16 Register werden somit _theoretisch_ innerhalb von etwa 24 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **30 Sekunden** für Berechnung und Anzeige der kompletten folgenden **Generation** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
+Alle 16 Register werden somit _theoretisch_ innerhalb von etwa 25 Sekunden ausgewertet. Nach jeweils vier Registern kommen allerdings noch (relativ aufwändige) Register-Tauschereien dazu, so dass am Ende etwa **31 Sekunden** für Berechnung und Anzeige der kompletten folgenden **Generation** herausspringen. Ein ziemlich gemütlicher Bildschirmschoner.
 
 Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und Links verzichtet und stattdessen Register 0 und Register 1 gemeinsam in der inneren Schleife auswertet. Das spart eine Schleifenebene, macht den Programmcode aber deutlich länger, da nun acht statt vier Bits auszuwerten sind. Gemessen habe ich dann xx Sekunden für die Berechnung einer Generation, also xx% Geschwindigkeitssteigerung. Ordentlich, aber zieht jetzt auch nicht die Wurst vom Teller. Ich wollte lieber mehr Platz für ein paar Testfiguren zur Auswahl haben.
 
@@ -283,10 +280,6 @@ Exemplarisch für die innere Schleife:
            GOTO Loop
 RLRotate   ...	
 ```
-
-
-
-
 
 ### Bitweise Rotation
 
@@ -322,7 +315,7 @@ Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenze
 Bei Bit 4 geht das nicht, denn mit CMPI können wir nicht einfach die Existenz von Bit 1 im angrenzenden rechten Register prüfen. Daher nutzen wir hier die bekannte Zähl-Routine _CountR1_.
 
 
-## Der Nutzen von Kommentaren
+## Der Nutzen von Sätzen
 
 … ist nicht zu unterschätzen.
 
