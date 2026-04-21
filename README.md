@@ -140,7 +140,7 @@ Dieses spezielle Register sollte fortan Register 0 sein:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
-| UNTEN-R0 | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | UNTEN-R1 |
+| UNTER-R0 | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | UNTER-R1 |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
 | | A | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | B | |
 | | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | |
@@ -164,10 +164,10 @@ Mehr braucht der Algorithmus zur Auswertung aber auch nicht:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
-| UNTEN-R0 | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | UNTEN-R1 |
+| UNTER-R0 | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | UNTER-R1 |
 | KOPIE | C | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | D | SCHLEIFE |
 | ANZAHL | A | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | :black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle:&nbsp;&nbsp;&nbsp;:black_circle: | B | ERGREG |
-| OBEN-R6 | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 9 | OBEN-R7 |
+| ÜBER-R6 | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 9 | ÜBER-R7 |
 | | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
 | | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
 | | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | |
@@ -183,7 +183,7 @@ Zum Beispiel werden für das vierte Bit (MSB) alle lebenden Nachbarzellen gezäh
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
-| UNTEN-R0 | E | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | F | UNTEN-R1 |
+| UNTER-R0 | E | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | F | UNTER-R1 |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
 | | A | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | B | |
 | | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | |
@@ -195,7 +195,7 @@ Zum Beispiel werden für das vierte Bit (MSB) alle lebenden Nachbarzellen gezäh
 Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register KOPIE. Da immer nur die roten Bits gezählt werden sollen, werden nicht zu zählende Bits im Registrer KOPIE nötigenfalls vorher mit ANDI gelöscht (Bit-maskiert). Alle dann noch übrigen Bits werden dann zur Gesamtzahl der lebenden Nachbarzellen addiert. Diese Addition erfolgt durch bitweises Verschieben des Registers KOPIE mit SHR und SHL. Jedes dabei herausfallende Carry wird mit ADC zur ANZAHL addiert. 
 
 ```
-           MOV UNTEN-R1,KOPIE         rechter Rand unten in KOPIE
+           MOV UNTER-R1,KOPIE         rechter Rand unten in KOPIE
            SHR KOPIE                  Bit 1 testen
            ADC ANZAHL                 und ggf. addieren
            MOV r1,KOPIE               rechter Rand mitte in KOPIE
@@ -204,7 +204,7 @@ Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register K
            MOV r3,KOPIE               rechter Rand oben in KOPIE
            SHR KOPIE                  Bit 1 testen
            ADC ANZAHL                 und ggf. addieren
-           MOV UNTEN-R0,KOPIE         unterer Rand in KOPIE
+           MOV UNTER-R0,KOPIE         unterer Rand in KOPIE
            ANDI #C,KOPIE              löscht Bits 1 und 2
            CALL CountL2               zählt nur Bits 3 und 4
            MOV r0,KOPIE               Selbst in KOPIE
