@@ -331,7 +331,7 @@ Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfac
 
 … ist nicht zu unterschätzen.
 
-[Count Count](https://www.clipartmax.com/png/small/29-296352_sesame-street-clipart-count-von-count-sesame-street-clipart-count-von-count.png)
+![Count Count](https://www.clipartmax.com/png/small/29-296352_sesame-street-clipart-count-von-count-sesame-street-clipart-count-von-count.png)
 
 Zunächst gab es nur ein Unterprogramm _Count_ für die Zählung aller vier Bits im Register KOPIE. Alle nicht zu zählenden Bits wurden in der inneren Schleife zuvor über ANDI gelöscht. Das funktionierte gut.
 
