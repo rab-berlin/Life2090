@@ -173,6 +173,65 @@ Mehr braucht der Algorithmus zur Auswertung aber auch nicht:
 | | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | |
 | | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | | 
 
+...
+
+### Wie werden die einzelnen Bits im Register 0 ausgewertet?
+
+Wir haben einen Mechanismus gefunden, durch den nacheinander alle Register in das immer gleiche Test-Register 0 zur Auswertung gelangen. Die eigentliche Auswertung erfolgt dann Bit für Bit. 
+
+Zum Beispiel müssen für das vierte Bit (MSB) alle lebenden Nachbarzellen gezählt werden:
+
+| | Reg. | Bits | Bits | Reg. | |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| UNTEN-R0 | E | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | F | UNTEN-R1 |
+| | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
+| | A | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | B | |
+| | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | |
+| | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
+| | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
+| | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
+| | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
+
+Alle Nachbarregister und das Test-Register 0 landen nacheinander im Register KOPIE. Da immer nur die roten Bits gezählt werden sollen, werden nicht zu zählende Bits nötigenfalls vorher mit ANDI gelöscht (Bit-maskiert) und dann zur Gesamtzahl der lebenden Nachbarzellen addiert. Diese Addition erfolgt durch bitweises Verschieben des Registers KOPIE mit SHR und SHL. Jedes dabei herausfallende Carry wird mit ADC zur ANZAHL addiert. 
+
+```
+           MOV UNTEN-R1,KOPIE         rechter Rand unten in KOPIE
+           SHR KOPIE                  Bit 1 testen
+           ADC ANZAHL                 und ggf. addieren
+           MOV r1,KOPIE               rechter Rand mitte in KOPIE
+           SHR KOPIE                  Bit 1 testen
+           ADC ANZAHL                 und ggf. addieren
+           MOV r3,KOPIE               rechter Rand oben in KOPIE
+           SHR KOPIE                  Bit 1 testen
+           ADC ANZAHL                 und ggf. addieren
+           MOV UNTEN-R0,KOPIE         unterer Rand in KOPIE
+           ANDI #C,KOPIE              löscht Bits 1 und 2
+           CALL CountL2               zählt nur Bits 3 und 4
+           MOV r0,KOPIE               Selbst in KOPIE
+           ANDI #4,KOPIE              löscht Bit 1, 2 und 4
+           CALL CountL2               zählt also nur Bit 3 
+           MOV r2,KOPIE               oberer Rand in KOPIE
+           ANDI #C,KOPIE              löscht Bits 1 und 2
+           CALL CountL2               zählt nur Bits 3 und 4
+           CALL ConwayRules	      ermittelt neuen Zustand der Zelle
+```
+
+Die anderen Bits des Test-Registers 0 werden ebenfalls entsprechend ausgewertet. Ergebnis-Bits werden in das Register ERGEBNIS geschrieben.
+
+Für die Bits 2 und 3 ist die Ermittlung übrigens weniger aufwändig, da nur die beiden Register oberhalb und unterhalb des Testregisters sowie das Testregister selbst berücksichtigt werden müssen - die Nachbarn rechts und links befinden sich bereits im Testregister 0:
+
+| | Reg. | Bits | Bits | Reg. | |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| UNTEN-R0 | E | :white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | F | UNTEN-R1 |
+| | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
+| | A | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | B | |
+| | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | |
+| | 6 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7 | |
+| | 4 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5 | |
+| | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
+| | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
+
+ 
 
 
 ## Geschwindigkeit
@@ -220,26 +279,27 @@ RLRotate   ...
 
 ### Bitweise Rotation
 
-Bitweise Rotation funktioniert besser mit _SHL_ (Verdoppeln), weil das höchstwertige Bit (MSB) herausgeschoben wird und direkt als Carry wieder addiert werden kann:
+Bitweise Rotation funktioniert besser mit SHL (Verdoppeln), weil das höchstwertige Bit (MSB) herausgeschoben wird und direkt als Carry wieder addiert werden kann:
 ```
-Rotate     SHL ERGREG
-           ADC ERGREG
+Rotate     SHL ERGEBNIS
+           ADC ERGEBNIS
 ```
-Mit _SHR_ (Halbieren) würde das niedrigstwertige Bit (LSB) herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
+Mit SHR (Halbieren) würde das niedrigstwertige Bit (LSB) herausfliegen, dieses müsste als Wert 8 wieder zum Register addiert werden. Man müsste also schreiben
 ```
-Rotate     SHR ERGREG
+Rotate     SHR ERGEBNIS
            BRC Add8
            GOTO Ende
-Add8       ADDI #8,ERGREG
+Add8       ADDI #8,ERGEBNIS
 Ende       ...
 ```
-Daher beginnt die innere Schleife mit dem Most Significant Bit (MSB), also mit Bit 4. Das kehrt zwar die intuitive Reihenfolge um, spart aber zwei Befehle.
+Daher beginnt die Bit-Auswertung in der inneren Schleife mit dem Most Significant Bit (MSB), also mit Bit 4. Das kehrt zwar die intuitive Reihenfolge um, spart aber zwei Befehle.
+
 
 ### Abkürzung
 
 Den ADC-Befehl können wir auch zur Auswertung der links bei Bit 1 und rechts bei Bit 4 angrenzenden Register vorteilhaft nutzen.
 
-Normalerweise wird das Register, dessen Bits wir zählen wollen, in TEST geschoben. Dann werden dort die Bits, die nicht in die Summe einfließen sollen, mit ANDI gelöscht und zum Schluss mit SHL, SHR und ADC gezählt (Unterprogramme _CountX_).
+Normalerweise wird das Register, dessen Bits wir zählen wollen, in KOPIE geschoben. Dann werden dort die Bits, die nicht in die Summe einfließen sollen, mit ANDI gelöscht und zum Schluss mit SHL, SHR und ADC gezählt (Unterprogramme _CountX_).
 
 Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenzende Register (der linke Nachbar von Bit 1) größer als 7 ist. Denn dann ist das vierte Bit gesetzt, also lebt der Nachbar und wird direkt mit ADC zur Summe addiert. 
 
@@ -248,11 +308,11 @@ Bei Bit 1 geht das aber deutlich einfacher. Wir vergleichen nur, ob das angrenze
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
-Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfach die Existenz von Bit 1 im angrenzenden rechten Register prüfen. Daher kopieren wir dieses Nachbarregister in TEST, schieben einmal bitweise nach rechts mit SHR und addieren das Carry, wenn es vorhanden ist, mit ADC.
+Bei Bit 4 brauchen wir einen Befehl mehr, denn mit CMPI können wir nicht einfach die Existenz von Bit 1 im angrenzenden rechten Register prüfen. Daher kopieren wir dieses Nachbarregister in KOPIE, schieben einmal bitweise nach rechts mit SHR und addieren das Carry, wenn es vorhanden ist, mit ADC.
 
 ```
-           MOV UNTEN-R,TEST      Kopie in Register TEST erstellen
-           SHR TEST              Bit 1 in rechtem Nachbarrregister herausschieben, Carry?
+           MOV UNTEN-R,KOPIE     Kopie in Register TEST erstellen
+           SHR KOPIE             Bit 1 in rechtem Nachbarrregister herausschieben, Carry?
            ADC ANZAHL            Dann +1 in Anzahl Nachbarn
 ```
 
