@@ -52,27 +52,28 @@ Als Beispiel ein paar Zellen im Life-Spielfeld:
 Aus vorherigen Programmläufen können noch Werte in den Registern liegen, deshalb solltest du vor Programmstart einmal die **grüne RESET-Taste** drücken. Auf der **Weboberfläche des ESP2090-Studios** muss der Button **LED Start** gedrückt sein, sonst siehst du nix. Dann startest du das Programm mit **HALT-NEXT-00-RUN** und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
 
 - Taste 0 - die Werte wurden bereits über HALT-REG-x in die Register 0-E eingegeben (Register F ist immer 0)
-- Taste 1 - Uhr
-- Taste 2 - Kröte
-- Taste 3 - Bipole
-- Taste 4 - Gleiter
-- Taste 5 - Segler
-- Taste 6 - Pentomino
+- Taste 1 - Blinker
+- Taste 2 - Uhr
+- Taste 3 - Kröte
+- Taste 4 - Bipole
+- Taste 5 - Gleiter
+- Taste 6 - Segler
+- Taste 7 - Pentomino
 - Taste F - die Werte werden anschließend erfasst, jedes Register von 0 bis F separat
 
 ### Eingabe der Register
 
-Wenn du das Startmuster selbst eingeben willst, dann hast du die Wahl. 
+Wenn du selbst ein Startmuster eingeben willst, dann hast du die Wahl. 
 
-Entweder füllst du alle nötigen Register schon vor Programmstart (mit HALT-REG-X), startest dann das Programm und wählst 0, um die Berechnung sofort anzuwerfen. Beachte aber, dass Register F bei dieser Auswahl _bauartbedingt_ immer 0 sein wird.
+Entweder füllst du alle nötigen Register schon vor Programmstart (mit HALT-REG-x), startest dann das Programm und wählst 0, um die Berechnung sofort anzuwerfen. Beachte aber, dass Register F bei dieser Auswahl _bauartbedingt_ immer 0 sein wird.
 
-Oder du startest das Programm und wählst F, um anschließend alle Register von 0 bis F der Reihe nach einzugeben. Ein Blick auf die Anordnung von Zellen und Registern in der Darstellung oben hilft dir dabei, die richtigen Register mit den richtigen Werten zu füllen. Probier einmal
+Oder du startest das Programm und wählst F, um anschließend alle Register von 0 bis F der Reihe nach einzugeben. Ein Blick auf die Anordnung von Zellen und Registern in der Darstellung oben hilft dir dabei, die richtigen Register mit den richtigen Werten zu füllen. Probier einmal:
 
 ```
 C, 3, 2, 4, 9, 9, 5, A, 1, 8, 5, A, 2, 4, C, 3 
 ```
 
-## Entwicklung
+## Entstehung
 
 Wie üblich - der erste Gedanke war: Müsste doch vielleicht irgendwie gehen... Der zweite Gedanke: Nee, kann nicht klappen, zu viele Programmschritte, zu wenig Register.
 
@@ -94,7 +95,7 @@ Den allerersten Ansatz habe ich nach kurzer Überlegung gar nicht weiter verfolg
 | | 0 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | | 
 
 
-Für Register 6 aber Vergleiche mit den Registern 4, 5, 7, 8 und 9:
+Für Register 6 brauchen wir aber Vergleiche mit anderen Registern, nämlich 4, 5, 7, 8 und 9:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -111,7 +112,7 @@ Andere Register bedingen aber anderen Code. Denn leider **können wir Register n
 
 ### Zweiter Ansatz
 
-Die nächste Idee: Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
+Die nächste Idee: Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die bis zu fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
 
 Wenn z.B. das Register 4 ausgewertet werden soll:
 
@@ -126,13 +127,13 @@ Wenn z.B. das Register 4 ausgewertet werden soll:
 | UNTEN ← | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | → NEBEN-U |
 | | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 
-Zwar gab es in diesem Ansatz nur noch einen einzigen, immer gleichen Code-Teil für die Auswertung, da immer die Register A-F ausgewertet werden. Aber die zahlreichen MOV-Operationen machten das Programm insgesamt trotzdem nicht kürzer, eher im Gegenteil. 
+Zwar gab es in diesem Ansatz nur noch einen einzigen, immer gleichen Code-Teil für die Auswertung, da stets die Register A-F ausgewertet werden. Aber die zahlreichen MOV-Operationen machten das Programm insgesamt trotzdem nicht kürzer, eher im Gegenteil. 
 
-Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Diese Idee passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der verfügbaren Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
+Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Diese Idee passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der noch übrigen Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
 
 ### Dritter Ansatz
 
-Die Idee, nur einen einzigen Code-Teil für die Auswertung zu haben, fühlte sich intuitiv aber richtig an. Denn dann muss ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code für die Auswertung deutlich verschlankt. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte den Ansatz sehr _teuer_. 
+Die Idee, nur einen einzigen Code-Teil für die Auswertung zu haben, fühlte sich aber richtig an. Denn dann muss ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code für die Auswertung deutlich verschlankt. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte den Ansatz sehr _teuer_. 
 
 Wie wäre es denn, wenn wir - wie im zweiten Ansatz - nur ein einziges, immer gleiches Register in der unteren Hälfte des Arbeitsspeichers auswerten und durch einen _clever durchdachten Verschiebebahnhof_ dafür sorgen, dass alle fünfzehn anderen Register nacheinander in diesem speziellen Register landen, um dort mit der immer gleichen Routine bearbeitet zu werden? Die Frage ist natürlich rhetorisch... es zeigte sich, dass das die Lösung war. 
 
@@ -149,7 +150,7 @@ Dieses spezielle Register sollte fortan Register 0 sein:
 | | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | |
 | | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | | 
 
-Die Berechnung der neuen Generation erfolgt schrittweise - jeweils nur für eine Hälfte des Life-Feldes: In den Arbeitsregistern 0-7 sind die auszuwertenden Register, in den Arbeitsregistern 8-F haben wir dann noch Platz für Schleife, Testregister, Zähler usw.
+Die Berechnung der neuen Generation soll jeweils nur für eine Hälfte des Life-Feldes erfolgen: In den Arbeitsregistern 0-7 sind die auszuwertenden Register, in den Arbeitsregistern 8-F haben wir dann noch Platz für Schleife, Testregister, Zähler usw. Nach der ersten Hälfte werden Oben und Unten getauscht - und so die zweite Hälfte berechnet.
 
 Wenn Register 0 ab jetzt immer das auszuwertende Register ist, dann brauchen wir in einem toroidalen Spielfeld auch die Register "darunter", also E und F. Diese Register liegen aber eigentlich in den Speicherregistern, wir müssen die Register E und F daher in die Arbeitsregister "einblenden", damit sie in die Auswertung einbezogen werden. Gleichzeitig werden wir später auch die Register "oberhalb" von Register 6 benötigen, die deswegen ebenfalls in die Arbeitsregister einzublenden sind.
 
