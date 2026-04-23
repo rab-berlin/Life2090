@@ -268,7 +268,7 @@ Um alle Register auszuwerten, müssen wir sie nacheinander in das Testregister 0
 
 Ohne groß nachzudenken, würde man dafür in einer Hochsprache einfach drei FOR-Schleifen mit drei unterschiedlichen Index-Variablen ineinander legen (= verschachteln). Register sind beim Microtronic aber kostbar und in diesem Fall schon fast alle belegt. Ich musste mit nur **einem Index-Register** _SCHLEIFE_ für **alle drei Schleifen gemeinsam** auskommen.
 
-Das geht aber verhältnismäßig einfach und elegant, wenn man das Bitmuster der Schleifenregisters auswertet. Denn bei jedem vierten Durchlauf (und nur dann) sind die Bits 1 und 2 des Schleifenregisters gesetzt, bei jedem achten Durchlauf die Bits 1, 2 und 3 und bei jedem 16. Durchlauf alle 4 Bits. Mit ANDI blenden wir die anderen Bits aus und können dann entscheiden, ob die Schleife in die nächsthöhere Ebene verlassen werden soll. 
+Das geht aber verhältnismäßig einfach und elegant, wenn man das Bitmuster des Schleifenregisters auswertet. Denn bei jedem vierten Durchlauf (und nur dann) sind die Bits 1 und 2 des Schleifenregisters gesetzt, bei jedem achten Durchlauf die Bits 1, 2 und 3 und bei jedem 16. Durchlauf alle 4 Bits. Mit ANDI blenden wir die anderen Bits aus und können dann entscheiden, ob die Schleife in die nächsthöhere Ebene verlassen werden soll. 
 
 Exemplarisch für die innere Schleife:
 
