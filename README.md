@@ -180,7 +180,20 @@ Wir erinnern uns: Das aktuelle Life-Spielfeld liegt in den **Speicher**registern
 
 Für die Auswertung der neuen Generation schieben wir die untere Hälfte der Speicherregister-Bank durch EXRL in die **Arbeits**register 0-7. Außerdem blenden wir die angrenzenden vier Register UNTER-R0, UNTER-R1 sowie ÜBER-R6 und ÜBER-R7 in die Arbeitsregister 8, 9, E und F ein. Damit sind alle nötigen Arbeitsregister befüllt, um die untere Hälfte des Feldes vollständig zu berechnen. 
 
-Da wir immer nur das Register 0 auswerten wollen, müssen alle Register nacheinander in dieses Register 0 geschoben werden. 
+Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander in dieses Register geschoben werden. Nachdem also die erste Auswertung durchgeführt wurde, werden alle relevanten Register _ring-getauscht_, damit das nächste Register zur Auswertung im Testregister 0 landet. Register 2 kommt in Register 0, Register 4 in 2, Register 6 in 4, ÜBER-R6 in 4, UNTER-R0 in 8 und schließlich Register 0 in UNTER-R0. Das gleiche passiert auch mit allen Registern auf der "rechten Seite", also mit Register 1, 3, 5 und 7 sowie ÜBER-R7 und UNTER-R1.
+
+| | Reg. | Bits | Bits | Reg. | |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| UNTER-R0<br>(aus 0) | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | UNTER-R1<br>(aus 1) |
+| KOPIE | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | SCHLEIFE |
+| ANZAHL | A | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | B | ERGEBNIS |
+| ÜBER-R6<br>(aus UNTER-R0) | 8 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 9 | ÜBER-R7<br>(aus UNTER-R1) |
+| | 6<br>(aus ÜBER-R6) | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 7<br>(aus ÜBER-R7)  | |
+| | 4<br>(aus 6) | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 5<br>(aus 7) | |
+| | 2<br>(aus 4) | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3<br>(aus 5) | |
+| | 0<br>(aus 2) | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1<br>(aus 3) | | 
+
+
 
 
 
