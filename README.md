@@ -174,7 +174,17 @@ Mehr braucht der Algorithmus zur Auswertung aber auch nicht:
 | | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | |
 | | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | | 
 
-...
+### Schiebung!
+
+Wir erinnern uns: Das aktuelle Life-Spielfeld liegt in den **Speicher**registern 0-F. Nur zur Anzeige mit dem Unterprogramm _Frame_ werden die Speicher- mit den Arbeitsregistern getauscht (EXRL und EXRM) und schnell hintereinander auf die Ausgänge gelegt (DOT).
+
+Für die Auswertung der neuen Generation schieben wir die untere Hälfte der Speicherregister-Bank durch EXRL in die **Arbeits**register 0-7. Außerdem blenden wir die angrenzenden vier Register UNTER-R0, UNTER-R1 sowie ÜBER-R6 und ÜBER-R7 in die Arbeitsregister 8, 9, E und F ein. Damit sind alle nötigen Arbeitsregister befüllt, um die untere Hälfte des Feldes vollständig zu berechnen. 
+
+Da wir immer nur das Register 0 auswerten wollen, müssen alle Register nacheinander in dieses Register 0 geschoben werden. 
+
+
+
+
 
 ### Wie werden die einzelnen Bits im Register 0 ausgewertet?
 
