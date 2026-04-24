@@ -195,7 +195,7 @@ Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander
 
 Der Inhalt von Register 0 wandert mit jedem Ringtausch ein Register weiter. Nach dem Tausch sehen die Arbeitsregister dann so aus:
 
-| | Reg. | Bits | Bits | Reg. | |
+| Inhalt ist... | Reg. | Bits | Bits | Reg. | Inhalt ist... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | aus R0 | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | aus R1 |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
@@ -210,7 +210,7 @@ Register 2 ist jetzt im Testregister 0 gelandet. Alle relevanten Nachbarregister
 
 Nach vier Durchläufen ist die linke Seite der unteren Hälfte des Spielfeldes (also Register 0, 2, 4 und 6) komplett berechnet:
 
-| | Reg. | Bits | Bits | Reg. | |
+| Inhalt ist... | Reg. | Bits | Bits | Reg. | Inhalt ist... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | aus R6 | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | aus R7 |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
@@ -240,7 +240,7 @@ Die innere Schleife kann jetzt verlassen werden, um Links mit Rechts zu tauschen
 
 Nach dem Links-Rechts-Tausch:
 
-| | Reg. | Bits | Bits | Reg. | |
+| Inhalt ist... | Reg. | Bits | Bits | Reg. | Inhalt ist... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | aus UNTER-R1 | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | aus UNTER-R0 |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
@@ -251,8 +251,9 @@ Nach dem Links-Rechts-Tausch:
 | aus R3 | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | aus R2 |
 | aus R1 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | aus R0 | 
 
+Nach dem LR-Tausch wird für die Register 0, 2, 4 und 6 wieder die gleiche Auswertung wie zuvor durchgeführt - mit dem Unterschied, dass dieses Mal tatsächlich die Register 1, 3, 5 und 7, also die rechte Seite, ausgewertet werden.
 
-
+Nach den zwei zusätzlichen Ringtauschen zur Positionskorrektur sind die Register 0-7 vollständig ausgewertet, also ist die untere Hälfte des Life-Spielfeldes komplett. Links und Rechts tauschen wieder die Plätze, womit alle Registerinhalte wieder am richtigen Ort sind.
 
 
 
