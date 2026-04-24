@@ -131,7 +131,7 @@ Zwar gab es in diesem Ansatz nur noch einen einzigen, immer gleichen Code-Teil f
 
 Ich hatte mal drauflos programmiert... und der Programmspeicher war bereits voll, als ich noch nicht einmal die Hälfte der Register codiert hatte. Diese Idee passte also auch nicht in die verfügbaren 256 Programmschritte. Zudem wurde die Menge der noch übrigen Register knapp, im Prinzip standen nur noch die beiden Register 8 und 9 zur Verfügung. Bedenklich.
 
-### Dritter Ansatz
+### Dritter (und letzter) Ansatz
 
 Die Idee, nur einen einzigen Code-Teil für die Auswertung zu haben, fühlte sich aber richtig an. Denn dann muss ich lediglich das **immer gleiche Register** mit den **immer gleichen Nachbarregistern** vergleichen, was den Code für die Auswertung deutlich verschlankt. Das Problem lag nur noch darin, dass für jedes Register zu viele und - schlimmer noch - jeweils andere Verschiebe-Operationen durchgeführt werden mussten, insbesondere das Verschieben der fünf Nachbarregister machte den Ansatz sehr _teuer_. 
 
@@ -160,7 +160,7 @@ Mehr braucht der Algorithmus zur Auswertung aber auch nicht:
 
 - KOPIE-Register: Kopie des jeweils auszuwertenden Registers, wird durch Bitoperationen "verbraucht"
 - ANZAHL-Register: Zähler für die Gesamtzahl der lebenden Nachbarn einer Zelle
-- ERGEBNIS-Register: Ergebnis der Auswertung, wird schrittweise mit den berechneten Bits gefüllt und rotiert
+- ERGEBNIS-Register: Ergebnis der Auswertung, wird schrittweise mit den berechneten Bits gefüllt und rotiert, später in das Speicherregister geschrieben
 - SCHLEIFE-Register: Schleifenzähler (Hinweis weiter unten)
 
 | | Reg. | Bits | Bits | Reg. | |
@@ -180,7 +180,7 @@ Wir erinnern uns: Das aktuelle Life-Spielfeld liegt in den **Speicher**registern
 
 Für die Auswertung der neuen Generation schieben wir die untere Hälfte der Speicherregister-Bank durch EXRL in die **Arbeits**register 0-7. Außerdem blenden wir die angrenzenden vier Register UNTER-R0, UNTER-R1 sowie ÜBER-R6 und ÜBER-R7 in die Arbeitsregister 8, 9, E und F ein. Damit sind alle nötigen Arbeitsregister befüllt, um die untere Hälfte des Feldes vollständig zu berechnen. 
 
-Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander in dieses Register geschoben werden. Nachdem also die erste Auswertung durchgeführt wurde, werden alle relevanten Register _ring-getauscht_, damit das nächste Register zur Auswertung im Testregister 0 landet. Register 2 kommt in Register 0, Register 4 in 2, Register 6 in 4, ÜBER-R6 in 4, UNTER-R0 in 8 und schließlich Register 0 in UNTER-R0. Das gleiche passiert auch mit allen Registern auf der "rechten Seite", also mit Register 1, 3, 5 und 7 sowie ÜBER-R7 und UNTER-R1.
+Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander in dieses Register geschoben werden. Nachdem die erste Auswertung durchgeführt wurde, werden alle relevanten Register _ring-getauscht_, damit das nächste Register zur Auswertung im Testregister 0 landet. Register 2 kommt in Register 0, Register 4 in 2, Register 6 in 4, ÜBER-R6 in 4, UNTER-R0 in 8 und schließlich Register 0 in UNTER-R0. Das gleiche passiert auch mit allen Registern auf der "rechten Seite", also mit Register 1, 3, 5 und 7 sowie ÜBER-R7 und UNTER-R1.
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -193,7 +193,7 @@ Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander
 | ↓ | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | ↓ |
 | ↻ | 0 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | ↺ | 
 
-Der Inhalt von Register 0 wandert mit jedem Ringtausch ein Register weiter. Nach dem Ringtausch sehen die Arbeitsregister dann so aus:
+Der Inhalt von Register 0 wandert mit jedem Ringtausch ein Register weiter. Nach dem Tausch sehen die Arbeitsregister dann so aus:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -208,7 +208,7 @@ Der Inhalt von Register 0 wandert mit jedem Ringtausch ein Register weiter. Nach
 
 Register 2 ist jetzt im Testregister 0 gelandet. Alle relevanten Nachbarregister von R2 - also Register 0, 1, 3, 4 und 5 - sind ebenfalls an die richtigen Stellen geschoben. Daher kann jetzt die Auswertung für Register 2 mit dem gleichen Code wie zuvor durchgeführt werden.  
 
-Nach vier Durchläufen ist die linke Seite der unteren Hälfte des Spielfeldes (also Register 0, 2, 4 und 6) komplett berechnet. Die Anordnung der Register sieht dann so aus:
+Nach vier Durchläufen ist die linke Seite der unteren Hälfte des Spielfeldes (also Register 0, 2, 4 und 6) komplett berechnet:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -221,9 +221,11 @@ Nach vier Durchläufen ist die linke Seite der unteren Hälfte des Spielfeldes (
 | aus UNTER-R0 | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | aus UNTER-R1 |
 | aus ÜBER-R6 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | aus ÜBER-R7 | 
 
-Damit alle Register wieder am richtigen Platz sind, führen wir noch zwei weitere Ringtausche ohne Auswertung durch. Damit sind alle Register wieder am ursprünglichen Platz - die Ergebnisse der Auswertung (also die neu berechnete Generation) befinden sich in den Speicherregistern. 
+Damit alle Register wieder am richtigen Platz sind, führen wir noch zwei weitere Ringtausche (ohne Auswertung) durch. 
 
-Jetzt wird die innere Schleife verlassen. Die linken und rechten Register 0-7 sowie die zughörigen UNTER- und ÜBER-Register werden getauscht. 
+Danach ist der ursprüngliche Inhalt von Register 0 wieder im Register 0, und alle anderen Register sind auch wieder am ursprünglichen Platz. Optisch hat sich nichts verändert, lediglich die Ergebnisse der Auswertung (also die neue Generation) von Register 0, 2, 4 und 6 befinden sich jetzt in den entsprechenden verborgenen Speicherregistern. 
+
+Die innere Schleife kann jetzt verlassen werden, um Links mit Rechts zu tauschen (Register 0-7 sowie die zughörigen UNTER- und ÜBER-Register). 
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -235,6 +237,20 @@ Jetzt wird die innere Schleife verlassen. Die linken und rechten Register 0-7 so
 | → | 4 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 5 | ← |
 | → | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | ← |
 | → | 0 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | ← | 
+
+Nach dem Links-Rechts-Tausch:
+
+| | Reg. | Bits | Bits | Reg. | |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| aus UNTER-R1 | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | aus UNTER-R0 |
+| | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
+| | A | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | B | |
+| aus ÜBER-R7 | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 9 | aus ÜBER-R6 |
+| aus R7 | 6 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 7 | aus R6 |
+| aus R5 | 4 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 5 | aus R4 |
+| aus R3 | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | aus R2 |
+| aus R1 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | aus R0 | 
+
 
 
 
