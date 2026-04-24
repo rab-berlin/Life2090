@@ -182,7 +182,7 @@ Für die Auswertung der neuen Generation schieben wir die untere Hälfte der Spe
 
 Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander in dieses Register geschoben werden. Nachdem die erste Auswertung durchgeführt wurde, werden alle relevanten Register _ring-getauscht_, damit das nächste Register zur Auswertung im Testregister 0 landet. Register 2 kommt in Register 0, Register 4 in 2, Register 6 in 4, ÜBER-R6 in 4, UNTER-R0 in 8 und schließlich Register 0 in UNTER-R0. Das gleiche passiert auch mit allen Registern auf der "rechten Seite", also mit Register 1, 3, 5 und 7 sowie ÜBER-R7 und UNTER-R1.
 
-| | Reg. | Bits | Bits | Reg. | |
+| Inhalt soll... | Reg. | Bits | Bits | Reg. | Inhalt soll... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | ↓ | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | ↓ |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
@@ -227,7 +227,7 @@ Danach ist der ursprüngliche Inhalt von Register 0 wieder im Register 0, und al
 
 Die innere Schleife kann jetzt verlassen werden, um Links mit Rechts zu tauschen (Register 0-7 sowie die zughörigen UNTER- und ÜBER-Register). 
 
-| | Reg. | Bits | Bits | Reg. | |
+| Inhalt soll... | Reg. | Bits | Bits | Reg. | Inhalt soll... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
 | → | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | ← |
 | | C | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | D | |
