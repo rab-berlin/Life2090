@@ -255,16 +255,37 @@ Nach dem LR-Tausch wird für die Register 0, 2, 4 und 6 wieder die gleiche Auswe
 
 Nach den zwei zusätzlichen Ringtauschen zur Positionskorrektur sind die Register 0-7 vollständig ausgewertet, also ist die untere Hälfte des Life-Spielfeldes komplett. Links und Rechts tauschen wieder die Plätze, womit alle Registerinhalte wieder am richtigen Ort sind.
 
+Zum Schluss soll die zweite, also obere Hälfte des Life-Spielfeldes berechnet werden. Damit wir wieder den gleichen Code zur Auswertung nutzen können, müssen die Register 8-F in die Register 0-7 geschoben werden - was mit dem Befehl EXRA ja elegant zu lösen ist. Zuvor müssen allerdings einige Registerbänke hin- und hergeschoben und der Zähler "gerettet" werden, um am Ende den Oben-Unten-Tausch durchzuführen:
 
+| Inhalt soll... | Reg. | Bits | Bits | Reg. | Inhalt soll... |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| ↓ | E | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | F | ↓ |
+| ↓ | C | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | D | ↓ |
+| ↓ | A | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | B | ↓ |
+| ↓ | 8 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 9 | ↓ |
+| ↑  | 6 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 7 | ↑ |
+| ↑ | 4 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 5 | ↑ |
+| ↑ | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | ↑ |
+| ↑ | 0 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | ↑ | 
 
+Nach dem OU-Tausch:
 
+| Inhalt ist... | Reg. | Bits | Bits | Reg. | Inhalt ist... |
+| ---: | :---: | :---: | :---: | :---: | :--- |
+| aus R6 | E | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | F | aus R7 |
+| aus R4 | C | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | D | aus R5 |
+| aus R2 | A | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | B | aus R3 |
+| aus R0 | 8 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 9 | aus R1 | 
+| aus RE | 6 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 7 | aus RF |
+| aus RC | 4 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 5 | aus RD |
+| aus RA | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | aus RB |
+| aus R8 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | aus R9 |
 
-
-
+Jetzt werden die Zellen der oberen Hälfte des Feldes wieder mit der gleichen Routine ausgewertet: Erst die ursprünglichen Inhalte von Register 8, A, C und E, dann LR-Tausch, dann die von Register 9, B, D und F. Nochmal LR-Tausch, nochmal OU-Tausch und... die komplette Folgegeneration liegt fertig ausgewertet in den Speicherregistern und kann angezeigt werden. Tadaa.
 
 ### Wie werden die einzelnen Bits im Register 0 ausgewertet?
 
-Wir haben einen Mechanismus gefunden, durch den nacheinander alle Register in das immer gleiche Test-Register 0 zur Auswertung gelangen. Die eigentliche Auswertung erfolgt dann Bit für Bit. 
+Wir haben einen Mechanismus entwickelt, durch den nacheinander alle Register in das Test-Register 0 zur Auswertung gelangen. Die eigentliche Auswertung erfolgt dann Bit für Bit in immer diesem Register. 
 
 Zum Beispiel werden für das vierte Bit (MSB) alle lebenden Nachbarzellen gezählt:
 
