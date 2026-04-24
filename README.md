@@ -112,7 +112,7 @@ Andere Register bedingen aber anderen Code. Denn leider **können wir Register n
 
 ### Zweiter Ansatz
 
-Die nächste Idee: Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Testregister in der oberen Hälfte geschoben. Die bis zu fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Testregister ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
+Die nächste Idee: Auszuwertende Register aus der unteren Speicherhälfte werden nacheinander in ein Test-Register in der oberen Hälfte geschoben. Die bis zu fünf relevanten Nachbarregister werden ebenfalls nach oben geschoben. Dann wird die (stets identische) Auswertungsroutine für das Test-Register ausgeführt und das Ergebnis zurück an die Stelle des gerade ausgewerteten Registers geschrieben - diesmal aber in das Speicherregister als neue Generation.
 
 Wenn z.B. das Register 4 ausgewertet werden soll:
 
@@ -150,7 +150,7 @@ Dieses spezielle Register sollte fortan Register 0 sein:
 | | 2 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | |
 | | 0 | :green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:green_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | | 
 
-Die Berechnung der neuen Generation soll jeweils nur für eine Hälfte des Life-Feldes erfolgen: In den Arbeitsregistern 0-7 sind die auszuwertenden Register, in den Arbeitsregistern 8-F haben wir dann noch Platz für Schleife, Testregister, Zähler usw. Nach der ersten Hälfte werden Oben und Unten getauscht - und so die zweite Hälfte berechnet.
+Die Berechnung der neuen Generation soll jeweils nur für eine Hälfte des Life-Feldes erfolgen: In den Arbeitsregistern 0-7 sind die auszuwertenden Register, in den Arbeitsregistern 8-F haben wir dann noch Platz für Schleife, Test-Register, Zähler usw. Nach der ersten Hälfte werden Oben und Unten getauscht - und so die zweite Hälfte berechnet.
 
 Wenn Register 0 ab jetzt immer das auszuwertende Register ist, dann brauchen wir in einem toroidalen Spielfeld auch die Register "darunter", also E und F. Diese Register liegen aber eigentlich in den Speicherregistern, wir müssen die Register E und F daher in die Arbeitsregister "einblenden", damit sie in die Auswertung einbezogen werden. Gleichzeitig werden wir später auch die Register "oberhalb" von Register 6 benötigen, die deswegen ebenfalls in die Arbeitsregister einzublenden sind.
 
@@ -180,7 +180,7 @@ Wir erinnern uns: Das aktuelle Life-Spielfeld liegt in den **Speicher**registern
 
 Für die Auswertung der neuen Generation schieben wir die untere Hälfte der Speicherregister-Bank durch EXRL in die **Arbeits**register 0-7. Außerdem blenden wir die angrenzenden vier Register UNTER-R0, UNTER-R1 sowie ÜBER-R6 und ÜBER-R7 in die Arbeitsregister 8, 9, E und F ein. Damit sind alle nötigen Arbeitsregister befüllt, um die untere Hälfte des Feldes vollständig zu berechnen. 
 
-Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander in dieses Register geschoben werden. Nachdem die erste Auswertung durchgeführt wurde, werden alle relevanten Register _ring-getauscht_, damit das nächste Register zur Auswertung im Testregister 0 landet. Register 2 kommt in Register 0, Register 4 in 2, Register 6 in 4, ÜBER-R6 in 4, UNTER-R0 in 8 und schließlich Register 0 in UNTER-R0. Das gleiche passiert auch mit allen Registern auf der "rechten Seite", also mit Register 1, 3, 5 und 7 sowie ÜBER-R7 und UNTER-R1.
+Wir werten stets nur das Register 0 aus, also müssen die Inhalte aller Register nacheinander in dieses Register geschoben werden. Nachdem die erste Auswertung durchgeführt wurde, werden alle relevanten Register _ring-getauscht_, damit die Zellen des nächsten Registers zur Auswertung im Test-Register 0 landen. Register 2 kommt in Register 0, Register 4 in 2, Register 6 in 4, ÜBER-R6 in 4, UNTER-R0 in 8 und schließlich Register 0 in UNTER-R0. Das gleiche passiert auch mit allen Registern auf der "rechten Seite", also mit Register 1, 3, 5 und 7 sowie ÜBER-R7 und UNTER-R1.
 
 | Inhalt soll... | Reg. | Bits | Bits | Reg. | Inhalt soll... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -193,7 +193,7 @@ Wir werten stets nur das Register 0 aus, also müssen alle Register nacheinander
 | ↓ | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | ↓ |
 | ↻ | 0 | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | ↺ | 
 
-Der Inhalt von Register 0 wandert mit jedem Ringtausch ein Register weiter. Nach dem Tausch sehen die Arbeitsregister dann so aus:
+Die Zellen von Register 0 wandern mit jedem Ringtausch ein Register weiter. Nach dem Tausch sehen die Arbeitsregister dann so aus:
 
 | Inhalt ist... | Reg. | Bits | Bits | Reg. | Inhalt ist... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -206,7 +206,7 @@ Der Inhalt von Register 0 wandert mit jedem Ringtausch ein Register weiter. Nach
 | aus R4 | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | aus R5 |
 | aus R2 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | aus R3 | 
 
-Register 2 ist jetzt im Testregister 0 gelandet. Alle relevanten Nachbarregister von R2 - also Register 0, 1, 3, 4 und 5 - sind ebenfalls an die richtigen Stellen geschoben. Daher kann jetzt die Auswertung für Register 2 mit dem gleichen Code wie zuvor durchgeführt werden.  
+Die Zellen von Register 2 sind jetzt im Test-Register 0 gelandet. Alle relevanten Nachbarregister von R2 - also Register 0, 1, 3, 4 und 5 - sind ebenfalls an die richtigen Stellen geschoben. Daher kann jetzt die Auswertung für Register 2 mit dem gleichen Code wie zuvor durchgeführt werden.  
 
 Nach vier Durchläufen ist die linke Seite der unteren Hälfte des Spielfeldes (also Register 0, 2, 4 und 6) komplett berechnet:
 
@@ -221,9 +221,7 @@ Nach vier Durchläufen ist die linke Seite der unteren Hälfte des Spielfeldes (
 | aus UNTER-R0 | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | aus UNTER-R1 |
 | aus ÜBER-R6 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | aus ÜBER-R7 | 
 
-Damit alle Register wieder am richtigen Platz sind, führen wir noch zwei weitere Ringtausche (ohne Auswertung) durch. 
-
-Danach ist der ursprüngliche Inhalt von Register 0 wieder im Register 0, und alle anderen Register sind auch wieder am ursprünglichen Platz. Optisch hat sich nichts verändert, lediglich die Ergebnisse der Auswertung (also die neue Generation) von Register 0, 2, 4 und 6 befinden sich jetzt in den entsprechenden verborgenen Speicherregistern. 
+Damit alle Zellen wieder am richtigen Platz sind, führen wir noch zwei weitere Ringtausche (ohne Auswertung) durch. Danach sind die ursprünglichen Zellen von Register 0 wieder im Register 0, und alle anderen Zellen sind auch wieder an den ursprünglichen Plätzen. Optisch hat sich nichts verändert, lediglich die Ergebnisse der Auswertung (also die neue Generation) von Register 0, 2, 4 und 6 befinden sich jetzt in den entsprechenden (verborgenen) Speicherregistern. 
 
 Die innere Schleife kann jetzt verlassen werden, um Links mit Rechts zu tauschen (Register 0-7 sowie die zughörigen UNTER- und ÜBER-Register). 
 
@@ -251,11 +249,11 @@ Nach dem Links-Rechts-Tausch:
 | aus R3 | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 3 | aus R2 |
 | aus R1 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | 1 | aus R0 | 
 
-Nach dem LR-Tausch wird für die Register 0, 2, 4 und 6 wieder die gleiche Auswertung wie zuvor durchgeführt - mit dem Unterschied, dass dieses Mal tatsächlich die Register 1, 3, 5 und 7, also die rechte Seite, ausgewertet werden.
+Nach dem LR-Tausch wird für die Register 0, 2, 4 und 6 wieder die gleiche Auswertung wie zuvor durchgeführt - mit dem Unterschied, dass dieses Mal tatsächlich die Zellen der Register 1, 3, 5 und 7, also die rechte Seite, ausgewertet werden.
 
-Nach den zwei zusätzlichen Ringtauschen zur Positionskorrektur sind die Register 0-7 vollständig ausgewertet, also ist die untere Hälfte des Life-Spielfeldes komplett. Links und Rechts tauschen wieder die Plätze, womit alle Registerinhalte wieder am richtigen Ort sind.
+Nach den zwei zusätzlichen Ringtauschen zur Positionskorrektur sind die Register 0-7 vollständig ausgewertet, also ist die untere Hälfte des Life-Spielfeldes komplett. Links und Rechts tauschen wieder die Plätze, womit alle Zellen wieder am richtigen Ort sind.
 
-Zum Schluss soll die zweite, also obere Hälfte des Life-Spielfeldes berechnet werden. Damit wir wieder den gleichen Code zur Auswertung nutzen können, müssen die Register 8-F in die Register 0-7 geschoben werden - was mit dem Befehl EXRA ja elegant zu lösen ist. Zuvor müssen allerdings einige Registerbänke hin- und hergeschoben und der Zähler "gerettet" werden, um am Ende den Oben-Unten-Tausch durchzuführen:
+Zum Schluss soll die zweite, also obere Hälfte des Life-Spielfeldes berechnet werden. Damit wir wieder den gleichen Code zur Auswertung nutzen können, müssen die Zellen in den Registern 8-F in die Register 0-7 geschoben werden - was mit dem Befehl EXRA ja elegant zu lösen ist. Zuvor müssen allerdings einige Registerbänke hin- und hergeschoben und der Zähler "gerettet" werden, um am Ende den Oben-Unten-Tausch durchzuführen:
 
 | Inhalt soll... | Reg. | Bits | Bits | Reg. | Inhalt soll... |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -281,11 +279,11 @@ Nach dem OU-Tausch:
 | aus RA | 2 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 3 | aus RB |
 | aus R8 | 0 | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | :orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle:&nbsp;&nbsp;&nbsp;:orange_circle: | 1 | aus R9 |
 
-Jetzt werden die Zellen der oberen Hälfte des Feldes wieder mit der gleichen Routine ausgewertet: Erst die ursprünglichen Inhalte von Register 8, A, C und E, dann LR-Tausch, dann die von Register 9, B, D und F. Nochmal LR-Tausch, nochmal OU-Tausch und... die komplette Folgegeneration liegt fertig ausgewertet in den Speicherregistern und kann angezeigt werden. Tadaa.
+Jetzt werden die Zellen der oberen Hälfte des Feldes wieder mit der gleichen Routine ausgewertet: Erst die ursprünglich aus Register 8, A, C und E stammenden Zellen, dann LR-Tausch, dann die aus Register 9, B, D und F. Nochmal LR-Tausch, nochmal OU-Tausch und... die komplette Folgegeneration liegt fertig ausgewertet in den Speicherregistern und kann angezeigt werden. Tadaa.
 
-### Wie werden die einzelnen Bits im Register 0 ausgewertet?
+### Wie werden die einzelnen Zellen im Register 0 ausgewertet?
 
-Wir haben einen Mechanismus entwickelt, durch den nacheinander alle Register in das Test-Register 0 zur Auswertung gelangen. Die eigentliche Auswertung erfolgt dann Bit für Bit in immer diesem Register. 
+Wir haben einen Mechanismus entwickelt, durch den nacheinander alle Register in das Test-Register 0 zur Auswertung gelangen. Die eigentliche Auswertung erfolgt dann Zelle für Zelle, Bit für Bit in immer diesem Register. 
 
 Zum Beispiel werden für das vierte Bit (MSB) alle lebenden Nachbarzellen gezählt:
 
@@ -319,9 +317,9 @@ Alle Nachbarregister sowie das Test-Register 0 landen nacheinander im Register K
            CALL ConwayRules           ermittelt neuen Zustand der Zelle
 ```
 
-Die anderen Bits des Test-Registers 0 werden ebenfalls entsprechend ausgewertet. Ergebnis-Bits werden in das Register ERGEBNIS geschrieben.
+Die anderen Zellen des Test-Registers 0 werden ebenfalls entsprechend ausgewertet. Ergebnis-Bits werden in das Register ERGEBNIS geschrieben.
 
-Für die Bits 2 und 3 ist die Ermittlung übrigens weniger aufwändig, da nur drei Register (die beiden Register oberhalb und unterhalb des Testregisters sowie das Testregister selbst) berücksichtigt werden müssen - die Nachbarn rechts und links befinden sich bereits im Testregister 0:
+Für die mittleren Zellen (Bits 2 und 3) ist die Ermittlung übrigens weniger aufwändig, da nur drei Register (die beiden Register oberhalb und unterhalb sowie das Test-Register selbst) berücksichtigt werden müssen - die Nachbarzellen rechts und links befinden sich bereits im Test-Register 0:
 
 | | Reg. | Bits | Bits | Reg. | |
 | ---: | :---: | :---: | :---: | :---: | :--- |
@@ -334,7 +332,7 @@ Für die Bits 2 und 3 ist die Ermittlung übrigens weniger aufwändig, da nur dr
 | | 2 | :white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 3 | |
 | | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:red_circle:&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;&nbsp;:red_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 
-Da nur die Nachbarzellen, nicht aber die Testzelle selbst addiert werden sollen, wird dieses Bit im Register KOPIE vorher mit ANDI gelöscht (Bit-maskiert). 
+Da nur die Nachbarzellen, nicht aber die zu testende Zelle selbst addiert werden sollen, wird das zugehörige Bit im Register KOPIE vorher mit ANDI gelöscht (Bit-maskiert). 
 
 ```
            MOV UNTER-R0,KOPIE         unterer Rand in KOPIE
@@ -366,7 +364,7 @@ Testweise habe ich eine Version geschrieben, die auf den Tausch von Rechts und L
 
 Schachteln und Schleifen erinnern ja eigentlich an Geburtstagsgeschenke. Und ein bisschen wie ein Geschenk ist auch diese Konstruktion...
 
-Um alle Register auszuwerten, müssen wir sie nacheinander in das Testregister 0 befördern. Dazu dient die folgende Schleifenanordnung:
+Um alle Register auszuwerten, müssen wir sie nacheinander in das Test-Register 0 befördern. Dazu dient die folgende Schleifenanordnung:
 
 - Innere Schleife: Nach jedem Durchlauf sind alle vier Bits des Registers 0 ausgewertet, Register 2 wird über **Ringtausch** in das Register 0 geschoben und die anderen Register entsprechend.
 - LR-Schleife: Nach jedem vierten Durchlauf tauschen die **linken Register** (0, 2, 4, 6) mit den **rechten Registern** (1, 3, 5, 7). 
