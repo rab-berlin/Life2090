@@ -2,7 +2,7 @@
 
 Conway's [Game of Life](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens) auf dem Busch Microtronic 2090
 
-![Life](/pics/life.jpg)
+![Life](/pics/life.gif)
 
 ## Hinweis
 
