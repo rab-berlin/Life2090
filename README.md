@@ -43,8 +43,8 @@ Als Beispiel ein paar Zellen im Life-Spielfeld:
 | **1** | 0 | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | :white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle:&nbsp;&nbsp;&nbsp;:white_circle: | 1 | | 
 | | **Spalte** | **1**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4** | **5**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**6**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**7**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**8** | | |
 
-- Die Zellen (3,4), (4,4) und (5,4) leben - im Register 4 steht daher der Wert C (Bits 3 und 4 gesetzt) und im Register 5 der Wert 1 (Bit 1 gesetzt). 
-- Die Zelle (5,6) lebt - im Register 7 steht der Wert 1 (Bit 1 gesetzt).
+- Die Zellen (3,3), (4,3) und (5,3) leben - im Register 4 steht daher der Wert C (Bits 3 und 4 gesetzt) und im Register 5 der Wert 1 (Bit 1 gesetzt). 
+- Die Zelle (5,4) lebt - im Register 7 steht der Wert 1 (Bit 1 gesetzt).
 - Die Zelle (4,5) lebt - im Register 8 steht der Wert 8 (Bit 4 gesetzt).
 - Alle anderen Zellen leben nicht, also steht der Wert 0 in den übrigen Registern.
 
