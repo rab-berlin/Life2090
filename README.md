@@ -50,7 +50,7 @@ Als Beispiel ein paar Zellen im Life-Spielfeld:
 
 ### Start
 
-Aus vorherigen Programmläufen können noch Werte in den Registern liegen, deshalb solltest du vor Programmstart einmal die **grüne RESET-Taste** drücken. Auf der **Weboberfläche des ESP2090-Studios** muss der Button **LED Start** gedrückt sein, sonst siehst du nix. Dann startest du das Programm mit **HALT-NEXT-00-RUN** und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
+Aus vorherigen Programmläufen können noch Werte in den Registern liegen, deshalb solltest du vor Programmstart einmal die **grüne RESET-Taste** drücken. Auf der **Weboberfläche des ESP2090-Studios** muss die Matrix eingeschaltet sein (Button **LED on**), sonst siehst du nix. Dann startest du das Programm mit **HALT-NEXT-00-RUN** und wählst aus, ob du die Werte schon eingegeben hast, ob du sie noch eingeben willst, oder ob du eine im Programm hinterlegte Figur zum Start laden willst.
 
 - Taste 0 - die Werte wurden bereits über HALT-REG-x in die Register 0-E eingegeben (Register F ist immer 0)
 - Taste 1 - Uhr
